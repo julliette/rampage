@@ -29,7 +29,7 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 			url: SERVICE_URL + '/Task',
 			method: 'GET'
 		});
-	}
+		}
 		
 	};
 	

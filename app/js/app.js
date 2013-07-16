@@ -13,7 +13,7 @@ function($routeProvider) {
 	});
 	$routeProvider.when('/viewTasks', {
 		templateUrl : 'partials/ViewTasks.html',
-		controller : 'MyCtrl1'
+		controller : 'MyCtrl2'
 	});
 	$routeProvider.otherwise({
 		redirectTo : '/view1'
