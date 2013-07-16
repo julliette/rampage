@@ -2,10 +2,17 @@
 
 /* Controllers */
 
-angular.module('rampage.controllers', []).
-  controller('MyCtrl1', [function() {
+angular.module('rampage.controllers', ['rampage.services'])
+.controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
 
-  }])
-  .controller('MyCtrl2', [function() {
+	kinvey.ping().then(function(data) {
+		$scope.data = data.data;
+		$scope.status = data.status;
+	}, function(data) {
+		$scope.data = data || "Request failed";
+	});
 
-  }]);
+}).controller('MyCtrl2', [
+function() {
+
+}]); 

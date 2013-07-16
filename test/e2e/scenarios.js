@@ -26,6 +26,9 @@ describe('my app', function() {
         toMatch(/partial for view 1/);
     });
 
+	it('should show the http status and data for the kinvey service', function() {
+		
+	});
   });
 
 

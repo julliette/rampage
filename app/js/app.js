@@ -14,13 +14,7 @@ function($routeProvider) {
 	$routeProvider.otherwise({
 		redirectTo : '/view1'
 	});
-}], function($httpProvider) {
-
-	// Use x-www-form-urlencoded Content-Type
-	$httpProvider.defaults.headers.common['Authorization'] = 'Basic kid_Te0iCbYsYf:f04cfc15db08416e8d6db3094d0160b0';
-	$httpProvider.defaults.headers.common['X-Kinvey-API-Version'] = '3';
-
-});
+}]);
 
 angular.module('rampage').factory('SERVICE_URL', [
 function() {
