@@ -21,8 +21,19 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 				url: SERVICE_URL,
 				method: 'GET'
 			});
-		}
+		},
+		
+		//Get data is called in the controller to retrieve the data from the tasks collection
+		getData : function() {
+		return $http({
+			url: SERVICE_URL + '/Task',
+			method: 'GET'
+		});
+	}
+		
 	};
 	
 	return service;
+	
+	
 }]);
