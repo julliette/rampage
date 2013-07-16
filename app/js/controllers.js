@@ -12,7 +12,14 @@ angular.module('rampage.controllers', ['rampage.services'])
 		$scope.data = data || "Request failed";
 	});
 
-}).controller('MyCtrl2', [
-function() {
+})
+.controller('viewTaskController',function viewTaskController($scope, kinvey) {
+	
+	kinvey.getData().then(function(data){
+		$scope.data = data.data;
+	}, function(data){
+			$scope.data = data || "Request failed";
+	});
+	
 
-}]); 
+}); 
