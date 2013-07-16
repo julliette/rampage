@@ -149,3 +149,8 @@ fetch the changes and merge them into your project with git.
 ## Contact
 
 For more information on AngularJS please check out http://angularjs.org/
+=======
+rampage
+=======
+
+Root repository for the AngularJS Rampup project
