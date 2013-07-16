@@ -1,12 +1,7 @@
-<div style="padding-left:20px; padding-right:20px;">
-	<h1>List of Todo's</h1>
-	<br/>
+<div style="padding-left:20px; padding-right:20px;">	
 	<ul>
-	<li ng-repeat="d in data">
-		{{d.Content}}|{{d.Status}}		
-	</li>
-		
-	</ul>
-	
-	
+	<pre ng-repeat="d in data">
+		<span>{{d.Content}}</span><span style="margin-left: 40px;">{{d.Status}}</span>		
+	</pre>		
+	</ul>	
 </div>

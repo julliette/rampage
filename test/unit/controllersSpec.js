@@ -130,8 +130,8 @@ describe('controllers', function() {
 		}));	
 		
 		
-		
-		/*		it ('should return the list of 5 tasks', inject(function($controller, SERVICE_URL, kinvey) {
+		/*
+				it ('should return the list of 5 tasks', inject(function($controller, SERVICE_URL, kinvey) {
 			$httpBackend.expectGET(SERVICE_URL + '/Task').respond({
 				data :  [{					 
 				_id: "51e586db48ad8b6579021138",
@@ -166,10 +166,10 @@ describe('controllers', function() {
 			});
 			
 			$httpBackend.flush();
-			expect(scope.data.length).toBe(5);
+			expect(scope.data).count().toBe(5);
 			
-		}));		*/
-		
+		}));		
+		*/
 	});
 });
 
