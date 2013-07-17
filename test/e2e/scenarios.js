@@ -45,4 +45,19 @@ describe('my app', function() {
     });
 
   });
+  
+	describe('viewTask', function(){
+  		 beforeEach(function() {
+    	 browser().navigateTo('#/viewTasks');
+	    });
+	
+  		it('should render viewTask when user navigates to /viewTask', function(){
+  			expect(element('[ng-view] p:first').text()).
+        	toMatch(/Tasks/);
+  		});
+  		
+  		it('should return multiple tasks', function(){
+  			expect(repeater('.tasks pre').count()).toBeGreaterThan(0);
+  		});
+  	});
 });

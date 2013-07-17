@@ -1,6 +1,10 @@
-<div style="padding-left:20px; padding-right:20px;">	
+<p>
+	Tasks.
+</p>
+<div class="tasks" style="padding-left:20px; padding-right:20px;">	
+	<div ng-bind-html="errorMessage"></div>
 	<ul>
-	<pre ng-repeat="d in data">
+	<pre ng-repeat="d in data | orderBy:'CreatedDate'">
 		<span>{{d.Content}}</span><span style="margin-left: 40px;">{{d.Status}}</span>		
 	</pre>		
 	</ul>	

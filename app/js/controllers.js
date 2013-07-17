@@ -17,6 +17,10 @@ angular.module('rampage.controllers', ['rampage.services'])
 	
 	kinvey.getData().then(function(data){
 		$scope.data = data.data;
+		if($scope.data == null)
+		{
+			$scope.errorMessage = '<div><h4><center>You have not created any tasks.</center></h4></div>';
+		}
 	}, function(data){
 			$scope.data = data || "Request failed";
 	});
