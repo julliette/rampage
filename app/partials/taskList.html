@@ -1,9 +1,10 @@
 <h1>Tasks</h1>
 <ul class="tasks">
-	<li ng-repeat="task in tasks">
+	<li ng-repeat="task in tasks|orderBy:'CreatedDate'">
 		<p>
-			{{task.Content}}<span> | {{task.Status}}</span>
+			{{task.Content}} | <span class="date">{{task.CreatedDate | date:'yyyy-MM-dd HH:mm:ss Z'}}</span> | <span class="status">{{task.Status}}</span>
 		</p>
 	</li>
 </ul>
 <h3 ng-show="tasks.length == 0" class="message">You have not created any tasks. </h3>
+<h3 ng-show="message != ''" class="message">{{message}}</h3>

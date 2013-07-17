@@ -109,5 +109,19 @@ describe('controllers', function() {
 			$httpBackend.flush();
 			expect(scope.tasks).toEqualData([]);
 		}));
+		
+		it('should handle retrieve error properly', inject(function($controller, SERVICE_URL, kinvey) {
+			$httpBackend.expectGET(SERVICE_URL + '/Task').respond(500, {});
+			control = $controller('TaskController', {
+				$scope : scope,
+				kinvey : kinvey
+			});
+
+			expect(scope.tasks).toEqual([]);
+			expect(scope.message).toEqual("");
+			$httpBackend.flush();
+			expect(scope.tasks).toEqual([]);
+			expect(scope.message).toEqual("There was an error retrieving your tasks.");
+		}));
 	});
 });

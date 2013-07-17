@@ -14,7 +14,12 @@ angular.module('rampage.controllers', ['rampage.services'])
 	
 }).controller('MyCtrl2', function MyCtrl2() {
 }).controller('TaskController', function TaskController($scope, kinvey) {
+	$scope.message = "";
 
-	$scope.tasks = kinvey.tasks().query();
+	$scope.tasks = kinvey.tasks().query(
+		function() {}, 
+		function(error) {
+			$scope.message = "There was an error retrieving your tasks."
+	});
 	
 }); 

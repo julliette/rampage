@@ -38,17 +38,34 @@ describe('my app', function() {
 		});
 
 	});
-	
+
 	describe('taskList', function() {
 		beforeEach(function() {
 			browser().navigateTo('#/tasks');
 		});
-		
+
 		it('should render the list of tasks', function() {
-      		expect(repeater('.tasks li').count()).toBe(6);
-      		expect(element('.message:visible').count()).toBe(0);
+			// expect(repeater('.tasks li').count()).toBe(7);
+			expect(element('.message:visible').count()).toBe(0);
+
+			var promise = element('li span.date', 'dates in the list').query(function(selectedElements, done) {
+				var lastDate, inOrder = true;
+				selectedElements.each(function(idx, elm) {
+					if (elm.innerText != "") {
+						var currentItem = new Date(elm.innerText);
+						if (idx > 0) {
+							inOrder = inOrder && (currentItem > lastDate);
+						}
+						lastDate = currentItem;
+					}
+				});
+				done(null, inOrder);
+			});
+
+			expect(promise).toBeTruthy();
+
 		});
-		
+
 		it('should render a message when the list is empty', function() {
 			expect(element('.message:visible').count()).toBe(1);
 		});
