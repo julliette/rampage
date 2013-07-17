@@ -47,5 +47,15 @@ describe('service', function() {
 				$httpBackend.flush();
 			}));
 		});
+		describe('addData service test', function() {
+			
+			it('sends RESTful resource POST request to kinvey', inject(function(SERVICE_URL) {
+				var url = SERVICE_URL + '/Task';
+				$httpBackend.when('POST', url).respond(200, {});
+				$httpBackend.expect('POST', url);
+				kinvey.addData();
+				$httpBackend.flush();
+			}));
+		});
 	});
 });

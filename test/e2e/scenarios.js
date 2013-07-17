@@ -60,4 +60,15 @@ describe('my app', function() {
   			expect(repeater('.tasks pre').count()).toBeGreaterThan(0);
   		});
   	});
+  	
+  	describe('addTask', function(){
+  		 beforeEach(function() {
+    	 browser().navigateTo('#/addTasks');
+	    });
+	
+  		it('should render addTask when user navigates to /addTask', function(){
+  			expect(element('[ng-view] p:first').text()).
+        	toMatch(/Tasks/);
+  		});  		
+  	});
 });

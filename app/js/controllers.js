@@ -25,9 +25,13 @@ angular.module('rampage.controllers', ['rampage.services','$strap.directives'])
 	});
 	
 	$scope.saveTask=function(data,form){	
+		var date= new Date();
+		
+		var modJson= {Content:data.Content, Status:data.Status, CreatedDate:date.getTime()};
 		console.log('logging');
-		if(form.$valid){			
-			kinvey.addData(data);				
+		if(form.$valid){
+						
+			kinvey.addData(modJson);				
 		}	
 		
 	}
