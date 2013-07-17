@@ -1,0 +1,8 @@
+<ul class="tasks">
+	<li ng-repeat="task in tasks">
+		<p>
+			{{task.Content}}<span> | {{task.Status}}</span>
+		</p>
+	</li>
+</ul>
+<div ng-show="tasks.length == 0" class="message">You have not created any tasks. </div>

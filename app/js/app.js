@@ -11,6 +11,10 @@ function($routeProvider) {
 		templateUrl : 'partials/partial2.html',
 		controller : 'MyCtrl2'
 	});
+	$routeProvider.when('/tasks', {
+		templateUrl : 'partials/taskList.html',
+		controller : 'TaskController'
+	});
 	$routeProvider.otherwise({
 		redirectTo : '/view1'
 	});

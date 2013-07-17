@@ -4,45 +4,53 @@
 
 describe('my app', function() {
 
-  beforeEach(function() {
-    browser().navigateTo('../../app/index.html');
-  });
-
-
-  it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
-    expect(browser().location().url()).toBe("/view1");
-  });
-
-
-  describe('view1', function() {
-
-    beforeEach(function() {
-      browser().navigateTo('#/view1');
-    });
-
-
-    it('should render view1 when user navigates to /view1', function() {
-      expect(element('[ng-view] p:first').text()).
-        toMatch(/partial for view 1/);
-    });
-
-	it('should show the http status and data for the kinvey service', function() {
-		
+	beforeEach(function() {
+		browser().navigateTo('../../app/index.html');
 	});
-  });
 
+	it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
+		expect(browser().location().url()).toBe("/view1");
+	});
 
-  describe('view2', function() {
+	describe('view1', function() {
 
-    beforeEach(function() {
-      browser().navigateTo('#/view2');
-    });
+		beforeEach(function() {
+			browser().navigateTo('#/view1');
+		});
 
+		it('should render view1 when user navigates to /view1', function() {
+			expect(element('[ng-view] p:first').text()).toMatch(/partial for view 1/);
+		});
 
-    it('should render view2 when user navigates to /view2', function() {
-      expect(element('[ng-view] p:first').text()).
-        toMatch(/partial for view 2/);
-    });
+		it('should show the http status and data for the kinvey service', function() {
 
-  });
+		});
+	});
+
+	describe('view2', function() {
+
+		beforeEach(function() {
+			browser().navigateTo('#/view2');
+		});
+
+		it('should render view2 when user navigates to /view2', function() {
+			expect(element('[ng-view] p:first').text()).toMatch(/partial for view 2/);
+		});
+
+	});
+	
+	describe('taskList', function() {
+		beforeEach(function() {
+			browser().navigateTo('#/tasks');
+		});
+		
+		it('should render the list of tasks', function() {
+      		expect(repeater('.tasks li').count()).toBe(6);
+      		expect(element('.message:visible').count()).toBe(0);
+		});
+		
+		it('should render a message when the list is empty', function() {
+			expect(element('.message:visible').count()).toBe(1);
+		});
+	});
 });

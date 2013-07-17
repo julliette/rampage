@@ -21,6 +21,10 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 				url: SERVICE_URL,
 				method: 'GET'
 			});
+		},
+		
+		tasks : function() {
+			return $resource(SERVICE_URL + '/Task/:id', {id:'@_id'});
 		}
 	};
 	

@@ -36,5 +36,15 @@ describe('service', function() {
 				$httpBackend.flush();
 			}));
 		});
+		
+		describe('tasks tests', function() {
+			it('sends an http get to pull back tasks', inject(function(SERVICE_URL) {
+				var url = SERVICE_URL + '/Task';
+				$httpBackend.when('GET', url).respond(200, {});
+				$httpBackend.expect('GET', url);
+				kinvey.tasks().query();
+				$httpBackend.flush();
+			}));
+		});
 	});
 });
