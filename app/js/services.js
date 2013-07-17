@@ -24,7 +24,9 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 		},
 		
 		tasks : function() {
-			return $resource(SERVICE_URL + '/Task/:id', {id:'@_id'});
+			return $resource(SERVICE_URL + '/Task/:id', {id:'@_id'}, {
+				update : {method: 'PUT'}
+			});
 		}
 	};
 	

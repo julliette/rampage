@@ -1,10 +1,25 @@
 <h1>Tasks</h1>
-<ul class="tasks">
-	<li ng-repeat="task in tasks|orderBy:'CreatedDate'">
-		<p>
-			{{task.Content}} | <span class="date">{{task.CreatedDate | date:'yyyy-MM-dd HH:mm:ss Z'}}</span> | <span class="status">{{task.Status}}</span>
-		</p>
-	</li>
-</ul>
-<h3 ng-show="tasks.length == 0" class="message">You have not created any tasks. </h3>
 <h3 ng-show="message != ''" class="message">{{message}}</h3>
+<h3 ng-show="tasks.length == 0" class="message">You have not created any tasks. </h3>
+<button type="button" class="btn btn-success" bs-modal="'partials/task-modal.html'"><i class="icon-user icon-white"></i>&nbsp;Create New Task</button>
+<table class="table table-striped" ng-hide="tasks.length == 0">
+	<thead>
+		<tr>
+			<th>Content</th>
+			<th>Created Date</th>
+			<th>Status</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="task in tasks|orderBy:'CreatedDate'">
+			<td>{{task.Content}}</td>
+			<td>{{task.CreatedDate | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
+			<td>{{task.Status}}</td>
+			<td>
+			<button class="btn btn-primary" bs-modal="'partials/task-modal.html'">
+				<i class="icon-pencil icon-white"></i>&nbsp;Edit
+			</button></td>
+		</tr>
+	</tbody>
+</table>

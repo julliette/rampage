@@ -48,11 +48,11 @@ describe('my app', function() {
 			// expect(repeater('.tasks li').count()).toBe(7);
 			expect(element('.message:visible').count()).toBe(0);
 
-			var promise = element('li span.date', 'dates in the list').query(function(selectedElements, done) {
+			var promise = element('td:nth-child(2)', 'dates in the list').query(function(selectedElements, done) {
 				var lastDate, inOrder = true;
 				selectedElements.each(function(idx, elm) {
-					if (elm.innerText != "") {
-						var currentItem = new Date(elm.innerText);
+					if (elm.firstChild.data != "") {
+						var currentItem = new Date(elm.firstChild.data);
 						if (idx > 0) {
 							inOrder = inOrder && (currentItem > lastDate);
 						}
