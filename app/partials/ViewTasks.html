@@ -1,12 +1,12 @@
-<div id="TasksList" ng-switch on="hasData">
-	<div ng-switch-when="true">
+<div  ng-switch on="hasData">
+	<div class="TasksList" ng-switch-when="true">
 		<ul>
-	  		<li ng-repeat="task in tasks">
+	  		<li ng-repeat="task in tasks | orderBy:'CreatedDate'">
 	  			<p>{{task.Content}}<span> | {{task.Status}}</span></p>
 	  		</li>
   		</ul>
   	</div>
-  	<div ng-switch-when="false">
+  	<div class="message" ng-switch-when="false">
   		{{message}}
   	</div>
   </div>

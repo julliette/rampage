@@ -31,7 +31,6 @@ describe('my app', function() {
 	});
   });
 
-
   describe('view2', function() {
 
     beforeEach(function() {
@@ -45,4 +44,18 @@ describe('my app', function() {
     });
 
   });
+  
+  describe('List Tasks', function() {
+  	
+  	beforeEach(function() {
+  		browser().navigateTo('#viewTasks');
+  	});
+  	
+  	it('should render the list of tasks', function() {
+  		expect(repeater('.TasksList ul li').count()).toBe(7);
+  		//expect(element('.message')).toBeUndefined();
+  	});
+  		
+  });
+  
 });

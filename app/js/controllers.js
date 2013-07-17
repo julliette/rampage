@@ -8,13 +8,14 @@ angular.module('rampage.controllers', ['rampage.services'])
 	kinvey.ping().then(function(data) {
 		$scope.data = data.data;
 		$scope.status = data.status;
-		//$scope.tasks = data;
 	}, function(data) {
 		$scope.data = data || "Request failed"; });
 			
 
 }).controller('MyCtrl2',function MyCtrl2($scope, kinvey) {
 	//Service call to retrieve data from Kinvey service
+	$scope.message = "";
+	
 	kinvey.getData().then(function(data){
 		$scope.tasks = data.data;
 		$scope.hasData = false;
