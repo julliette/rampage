@@ -23,19 +23,26 @@ angular.module('rampage.controllers', ['rampage.services','$strap.directives'])
 	}, function(data){
 			$scope.data = data || "Request failed";
 	});
-})
-.controller('MyCtrl1',function MyCtrl1() {
-	
-	})
-	
-.controller('addTaskController',function addTaskController($scope, kinvey) {
 	
 	$scope.saveTask=function(data,form){	
+		console.log('logging');
+		if(form.$valid){			
+			kinvey.addData(data);				
+		}	
 		
+	}
+})
+.controller('MyCtrl2',function MyCtrl2() {
+	
+	});
+/*.controller('addTaskController',function addTaskController($scope, kinvey) {
+	
+	/$scope.saveTask=function(data,form){	
+		console.log('logging');
 		if(form.$valid){			
 			kinvey.addData(data);				
 		}	
 		
 	}
 		
-}); 
+}); */

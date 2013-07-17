@@ -28,20 +28,19 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 				method: 'GET'
 			});
 		},
-		addData : function(data){
-			var resource=$resource(SERVICE_URL + '/Task');
-			//var resource=$resource('http://baas.kinvey.com/appdata/kid_Te0iCbYsYf' + '/Task');			
-			resource.save(data);
-			
-			//$http({
+		addData : function(data){			
+			var resource=$resource(SERVICE_URL + '/Task');	
+			resource.save(data);			
+			/*$http({
 				//url: SERVICE_URL + '/Task',
 				//method: 'POST',				
 				//data:data
 			//}).error(function(data,status){
 				//$log.warn(data,status);
 			//});
-			
+			*/
 		}
+	
 	};
 	
 	return service;
