@@ -53,7 +53,7 @@ describe('my app', function() {
 	
   		it('should render viewTask when user navigates to /viewTask', function(){
   			expect(element('[ng-view] p:first').text()).
-        	toMatch(/Tasks/);
+        	toMatch(/New Task/);
   		});
   		
   		it('should return multiple tasks', function(){

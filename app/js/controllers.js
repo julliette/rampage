@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('rampage.controllers', ['rampage.services','$strap.directives'])
+angular.module('rampage.controllers', ['rampage.services'])
 .controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
 
 	kinvey.ping().then(function(data) {
