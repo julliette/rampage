@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('rampage.controllers', ['rampage.services'])
+angular.module('rampage.controllers', ['rampage.services','$strap.directives'])
 .controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
 
 	kinvey.ping().then(function(data) {
@@ -13,8 +13,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 	});
 
 })
-.controller('viewTaskController',function viewTaskController($scope, kinvey) {
-	
+.controller('viewTaskController',function viewTaskController($scope, kinvey) {	
 	kinvey.getData().then(function(data){
 		$scope.data = data.data;
 		if($scope.data == null)
@@ -24,9 +23,11 @@ angular.module('rampage.controllers', ['rampage.services'])
 	}, function(data){
 			$scope.data = data || "Request failed";
 	});
-	
-
 })
+.controller('MyCtrl1',function MyCtrl1() {
+	
+	})
+	
 .controller('addTaskController',function addTaskController($scope, kinvey) {
 	
 	$scope.saveTask=function(data,form){	
