@@ -8,7 +8,7 @@
 angular.module('rampage.services', ['ngResource']).
   value('version', '0.1');
   
-angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SERVICE_URL', function($resource, $http, SERVICE_URL) {
+angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SERVICE_URL', function($resource, $http, SERVICE_URL, $log) {
 	
 	var token = 'Basic a2lkX1RlMGlDYllzWWY6ZjA0Y2ZjMTVkYjA4NDE2ZThkNmRiMzA5NGQwMTYwYjA=';
 	$http.defaults.headers.common['Authorization'] = token;
@@ -30,12 +30,15 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 		},
 		addData : function(data){
 			var resource=$resource(SERVICE_URL + '/Task');
-			//var resource=$resource('http://baas.kinvey.com/appdata/kid_Te0iCbYsYf' + '/Task');
+			//var resource=$resource('http://baas.kinvey.com/appdata/kid_Te0iCbYsYf' + '/Task');			
 			resource.save(data);
+			
 			//$http({
 				//url: SERVICE_URL + '/Task',
-				//method: 'POST',
+				//method: 'POST',				
 				//data:data
+			//}).error(function(data,status){
+				//$log.warn(data,status);
 			//});
 			
 		}

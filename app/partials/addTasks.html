@@ -5,9 +5,9 @@
         <form name="newTaskForm">
             <fieldset>
                 <label for="taskContent">Content</label>
-                <input id="taskContent" type="text" required placeholder="Your Task Content..." ng-model="task.content" />
+                <input id="taskContent" type="text" required placeholder="Your Task Content..." ng-model="task.Content" />
                 <label for="taskStatus">Status</label>
-                <input id="taskStatus" type="text" required placeholder="Your Task Status..."  ng-model="task.status" />
+                <input id="taskStatus" type="text" required placeholder="Your Task Status..."  ng-model="task.Status" />
             </fieldset>
 
             <button type="submit" class="btn btn-primary" ng-disabled="newTaskForm.$invalid" ng-click="saveTask(task,newTaskForm)">Submit</button>

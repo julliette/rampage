@@ -29,11 +29,12 @@ angular.module('rampage.controllers', ['rampage.services'])
 })
 .controller('addTaskController',function addTaskController($scope, kinvey) {
 	
-	$scope.saveTask=function(data,form){
-		//if(form.$valid){
-						
-		//}
-		kinvey.addData({Status:"Test", Content:"stuff"});
+	$scope.saveTask=function(data,form){	
+		
+		if(form.$valid){			
+			kinvey.addData(data);				
+		}	
+		
 	}
 		
 }); 
