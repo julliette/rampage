@@ -157,11 +157,15 @@ describe('controllers', function() {
 				expect(scope.tasks.length).toEqual(2);
 				
 				// save
-				scope.saveTask(task);
+				scope.saveTask({}, task);
 				$httpBackend.flush();
 
 				// new task should be added to the list
-				expect(scope.tasks.length).toEqual(3);				
+				expect(scope.tasks.length).toEqual(3);	
+				
+				// make sure it cleans up after
+				expect(scope.editing).toEqual({});
+				expect(scope.original).toEqual({});			
 			}));
 			
 			it('should show a message if a save new fails', inject(function(SERVICE_URL) {
@@ -173,7 +177,7 @@ describe('controllers', function() {
 				expect(scope.tasks.length).toEqual(2);
 				
 				// save
-				scope.saveTask(task);
+				scope.saveTask({}, task);
 				$httpBackend.flush();
 
 				// new task should not be added to the list
@@ -183,18 +187,23 @@ describe('controllers', function() {
 			
 			it('should update an existing task', inject(function(SERVICE_URL) {
 				// setup with user-entered data, server response
-				var task = data[0];
-				$httpBackend.expectPUT(SERVICE_URL + '/Task/' + task._id).respond(data[0]);
+				var task = angular.copy(data[0]);
+				task.Status = "Complete";
+				$httpBackend.expectPUT(SERVICE_URL + '/Task/' + task._id).respond(task);
 				
 				// make sure initial state is as expected
 				expect(scope.tasks.length).toEqual(2);
 				
 				// save
-				scope.saveTask(scope.tasks[0]);
+				scope.saveTask(scope.tasks[0], scope.tasks[0]);
 				$httpBackend.flush();
 
-				// new task should be added to the list
+				// updated task should replace the old one
 				expect(scope.tasks.length).toEqual(2);	
+				expect(scope.tasks[0].Status).toEqual("Complete");
+				// make sure it cleans up after
+				expect(scope.editing).toEqual({});
+				expect(scope.original).toEqual({});			
 				
 			}));
 			
@@ -207,7 +216,7 @@ describe('controllers', function() {
 				expect(scope.tasks.length).toEqual(2);
 				
 				// save
-				scope.saveTask(scope.tasks[0]);
+				scope.saveTask(scope.tasks[0], scope.tasks[0]);
 				$httpBackend.flush();
 
 				// new task should not be added to the list
@@ -215,9 +224,17 @@ describe('controllers', function() {
 				expect(scope.message).toEqual("Failed to save updated task. Please try again: 500");				
 			}));
 			
-			it('should show a message and not save if all required fields are not present', function() {
+			it('should cancel out of the edit without making any updates', inject(function() {
+				scope.editing = {blah: "blah"};
+				scope.original = {bob: "suzie"};
 				
-			});
+				scope.cancelEdit();
+				// make sure it cleans up after
+				expect(scope.editing).toEqual({});
+				expect(scope.original).toEqual({});			
+
+			}));
+			
 		});
 	});
 });
