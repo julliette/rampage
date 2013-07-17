@@ -12,6 +12,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 		$scope.data = data || "Request failed";
 	});
 	
+}).controller('MyCtrl2', function MyCtrl2() {
 }).controller('TaskController', function TaskController($scope, kinvey) {
 
 	$scope.tasks = kinvey.tasks().query();
