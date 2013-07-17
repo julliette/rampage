@@ -28,3 +28,29 @@
   content: "";
   padding: 0;
 }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none;
+}
+
+.overlay
+{
+	height:100%;
+	width:100%;
+	position:fixed;
+	left:0;
+	top:0;
+	z-index:1 !important;
+	background-color:grey;
+}
+
+.content
+{
+	margin: 60px auto;
+	width: 50%;
+	padding: 20px;
+	position: relative;
+	border-style: double;
+	border-width: 10px;
+	background-color: white;
+}

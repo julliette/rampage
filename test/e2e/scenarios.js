@@ -52,7 +52,7 @@ describe('my app', function() {
   	});
   	
   	it('should render the list of tasks', function() {
-  		expect(repeater('.TasksList ul li').count()).toBe(7);
+  		expect(repeater('.TasksList pre').count()).toBeGreaterThan(0);
   		//expect(element('.message')).toBeUndefined();
   	});
   		

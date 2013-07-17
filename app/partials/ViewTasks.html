@@ -1,12 +1,37 @@
-<div  ng-switch on="hasData">
+<h2>Tasks :</h2>
+<br />
+<button class="btn btn-large" style:"width:400px;" type="button" ng-click="showOverlay=true" ng-init="showOverlay=false" >Add new task</button>&nbsp;&nbsp;
+<!--button class="btn btn-large" type="button" ng-click="refreshPage"><i class="icon-refresh"></i>&nbsp;Refresh</button-->
+<br /><br />
+<div ng-switch on="hasData">
 	<div class="TasksList" ng-switch-when="true">
-		<ul>
-	  		<li ng-repeat="task in tasks | orderBy:'CreatedDate'">
-	  			<p>{{task.Content}}<span> | {{task.Status}}</span></p>
-	  		</li>
-  		</ul>
+		<pre ng-repeat="task in tasks | orderBy:'CreatedDate'">
+			<p>{{task.Content}}<span> | {{task.Status}}</span></p>
+  		</pre>
   	</div>
   	<div class="message" ng-switch-when="false">
   		{{message}}
   	</div>
-  </div>
+ </div>
+ <div>
+ </div>
+ <div ng-show="showOverlay" class="overlay">
+ 	<div id="Content">
+ 		<div class="container content">
+ 			<form name="addTasksForm">
+ 				<h2>Enter information for a new task:</h2>
+ 				<hr />
+ 				<fieldset>
+		 			<label for="newTaskContent">Task Content:</label>
+		 			<input id="newTaskContent" type="text" required ng-model="newTask.Content" placeholder="Content of your task..."/>
+		 			
+		 			<label for="newTaskStatus">Task Status:</label>
+		 			<input id="newTaskStatus" type="text" required ng-model="newTask.Status" placeholder="Status of your task..."/>
+	 			</fieldset>
+	 			<br />
+	 			<button type="submit" class="btn btn-primary" ng-click="createTask(newTask)" ng-disabled="addTasksForm.$invalid">Submit</button>&nbsp;
+		 		<button type="button" class="btn btn-primary" ng-click="showOverlay=false">Cancel</button>
+ 			</form>
+ 		</div>
+ 	</div>
+ </div>
