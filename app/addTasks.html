@@ -1,0 +1,17 @@
+<div class="container">
+        <h1>New Task</h1>
+        
+        <hr />
+        <form name="newTaskForm">
+            <fieldset>
+                <label for="taskContent">Content</label>
+                <input id="taskContent" type="text" required placeholder="Your Task Content..." ng-model="task.content" />
+                <label for="taskStatus">Status</label>
+                <input id="taskStatus" type="text" required placeholder="Your Task Status..."  ng-model="task.status" />
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary" ng-disabled="newTaskForm.$invalid" ng-click="saveTask(task,newTaskForm)">Submit</button>
+            <button type="button" class="btn btn-default">Cancel</button>
+        </form>
+</div>
+	
