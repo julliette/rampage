@@ -49,7 +49,7 @@ describe('service', function() {
 		});
 		describe('addData service test', function() {
 			
-			it('sends RESTful resource POST request to kinvey', inject(function(SERVICE_URL) {
+			it('sends an http POST request to kinvey', inject(function(SERVICE_URL) {
 				var url = SERVICE_URL + '/Task';
 				$httpBackend.when('POST', url).respond(200, {});
 				$httpBackend.expect('POST', url);
