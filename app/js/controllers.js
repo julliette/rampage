@@ -24,25 +24,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 			$scope.data = data || "Request failed";
 	});
 	
-<<<<<<< HEAD
-	$scope.saveTask = function(data,form){	
-		var date= new Date();		
-		var modJson= {Content:data.Content, Status:data.Status, CreatedDate:date.getTime()};
-		//console.log('logging');
-		if(form.$valid){						
-				kinvey.addData(modJson);
-				//$scope.addTaskModal.hide();
-				//$('.addTaskModal').modal('hide');
-        	}        		
-			window.alert("Task saved.")
-		
-			/*.then(function(data){
-				$scope.message = "Task saved.";
-			}, function(error){
-				$scope.message = "Failed to create new task. Please try again: " + error.status;
-			});		*/				
-=======
-	$scope.saveTask = function(data,form)
+$scope.saveTask = function(data,form)
 	{	
 		var date= new Date();		
 		var modJson= {Content:data.Content, Status:data.Status, CreatedDate:date.getTime()};
@@ -57,7 +39,7 @@ angular.module('rampage.controllers', ['rampage.services'])
     		 	//add error message here
     		 });    		 	
     	}						
->>>>>>> 22475ddda4b597e0cf89f6fb6451fa831783e0b6
+
 	};	
 	
 })
