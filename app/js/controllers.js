@@ -31,29 +31,16 @@ $scope.saveTask = function(data,form)
 		//console.log('logging');
 		if(form.$valid)
 		{						
-				kinvey.addData(modJson).success(function(data, status, modJson) {
+				kinvey.addData(modJson).success(function(data, status) {
 					$scope.data.push(data);
-      			window.alert("Task saved.");
-      			
+      			window.alert("Task saved.");      			
     		 }).error(function(data, status) {
     		 	//add error message here
+    		 	window.alert("Task wasn't saved please try again.");
     		 });    		 	
-    	}						
-
+    	}
 	};	
-	
 })
 .controller('MyCtrl2',function MyCtrl2() {
 	
 	});
-/*.controller('addTaskController',function addTaskController($scope, kinvey) {
-	
-	/$scope.saveTask=function(data,form){	
-		console.log('logging');
-		if(form.$valid){			
-			kinvey.addData(data);				
-		}	
-		
-	}
-		
-}); */
