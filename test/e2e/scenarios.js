@@ -60,6 +60,5 @@ describe('my app', function() {
   			expect(repeater('.tasks pre').count()).toBeGreaterThan(0);
   		});
   	});
+  });
   	
-  	
-});
