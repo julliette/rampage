@@ -3,6 +3,7 @@ basePath = '../';
 files = [
   ANGULAR_SCENARIO,
   ANGULAR_SCENARIO_ADAPTER,
+  'app/lib/angular/angular-strap.js',
   'test/e2e/**/*.js'
 ];
 

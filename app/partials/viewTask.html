@@ -7,7 +7,7 @@
 	<div ng-bind-html="errorMessage"></div>
 	<ul>
 	<pre ng-repeat="d in data | orderBy:'CreatedDate'">
-		<span>{{d.Content}}</span><span style="margin-left: 40px;">{{d.Status}}</span>		
+		<span>{{d.Content}}</span><span style="margin-left: 40px;">{{d.Status}}</span><a class="btn btn-small" href="#"><i class="icon-edit"></i></a>	
 	</pre>		
 	</ul>	
 </div>
