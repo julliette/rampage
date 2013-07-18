@@ -144,6 +144,7 @@ describe('controllers', function() {
 		}));		
 		*/
 	});
+	
 });
 
 

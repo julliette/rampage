@@ -24,7 +24,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 			$scope.data = data || "Request failed";
 	});
 	
-	$scope.saveTask = function(data,form)
+$scope.saveTask = function(data,form)
 	{	
 		var date= new Date();		
 		var modJson= {Content:data.Content, Status:data.Status, CreatedDate:date.getTime()};
@@ -39,6 +39,7 @@ angular.module('rampage.controllers', ['rampage.services'])
     		 	//add error message here
     		 });    		 	
     	}						
+
 	};	
 	
 })

@@ -60,8 +60,9 @@ describe('my app', function() {
   			expect(repeater('.tasks pre').count()).toBeGreaterThan(0);
   		});
   	});
-  	
-  	describe('addTask', function(){
+  });
+  
+  describe('addTask', function(){
   		 beforeEach(function() {
     	 browser().navigateTo('#/addTasks');
 	    });
@@ -71,4 +72,6 @@ describe('my app', function() {
         	toMatch(/\n\t\tNew Task\n\t/);
   		});  		
   	});
-});
+  	
+
+
