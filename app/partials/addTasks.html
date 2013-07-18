@@ -1,8 +1,6 @@
-<div id="addTaskModal">
 	<div class="modal-header">
-		<h3 ng-show="message != ''" class="message">{{message}}</h3>
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		<h3><center>New Task</center></h3>
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>		
 	</div>
 	<hr />
 	<div class="modal-body">
@@ -19,5 +17,5 @@
 		<button type="submit" class="btn btn-primary" ng-disabled="newTaskForm.$invalid" ng-click="saveTask(task,newTaskForm)">Submit</button>
 	    <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
 	</div>      
-</div>
+
 	
