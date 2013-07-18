@@ -143,6 +143,7 @@ describe('controllers', function() {
 		}));		
 		*/
 	});
+	
 });
 
 

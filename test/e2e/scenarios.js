@@ -68,7 +68,7 @@ describe('my app', function() {
 	
   		it('should render addTask when user navigates to /addTask', function(){
   			expect(element('[ng-view] p:first').text()).
-        	toMatch(/Tasks/);
+        	toMatch(/Task/);
   		});  		
   	});
 });
