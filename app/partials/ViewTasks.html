@@ -1,7 +1,7 @@
 <h2>Tasks :</h2>
 <br />
 <button class="btn btn-large" style:"width:400px;" type="button" ng-click="showOverlay=true" ng-init="showOverlay=false" >Add new task</button>&nbsp;&nbsp;
-<!--button class="btn btn-large" type="button" ng-click="refreshPage"><i class="icon-refresh"></i>&nbsp;Refresh</button-->
+<button class="btn btn-large" type="button" onclick='location.reload(true); return false;'><i class="icon-refresh"></i>&nbsp;Refresh</button>
 <br /><br />
 <div ng-switch on="hasData">
 	<div class="TasksList" ng-switch-when="true">
