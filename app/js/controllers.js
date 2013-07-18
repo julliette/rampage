@@ -31,8 +31,8 @@ angular.module('rampage.controllers', ['rampage.services'])
 		//console.log('logging');
 		if(form.$valid)
 		{						
-				kinvey.addData(modJson).success(function(data, status,modJson) {
-					//$scope.data.push(modJson);
+				kinvey.addData(modJson).success(function(data, status, modJson) {
+					$scope.data.push(data);
       			window.alert("Task saved.");
       			
     		 }).error(function(data, status) {
