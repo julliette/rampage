@@ -62,3 +62,17 @@ describe('my app', function() {
   	});
   });
   	
+<<<<<<< HEAD
+=======
+  	describe('addTask', function(){
+  		 beforeEach(function() {
+    	 browser().navigateTo('#/addTasks');
+	    });
+	
+  		it('should render addTask when user navigates to /addTask', function(){
+  			expect(element('[ng-view] div:first').text()).
+        	toMatch(/\n\t\tNew Task\n\t/);
+  		});  		
+  	});
+});
+>>>>>>> 22475ddda4b597e0cf89f6fb6451fa831783e0b6

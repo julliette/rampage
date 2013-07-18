@@ -24,6 +24,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 			$scope.data = data || "Request failed";
 	});
 	
+<<<<<<< HEAD
 	$scope.saveTask = function(data,form){	
 		var date= new Date();		
 		var modJson= {Content:data.Content, Status:data.Status, CreatedDate:date.getTime()};
@@ -40,6 +41,21 @@ angular.module('rampage.controllers', ['rampage.services'])
 			}, function(error){
 				$scope.message = "Failed to create new task. Please try again: " + error.status;
 			});		*/				
+=======
+	$scope.saveTask = function(data,form)
+	{	
+		var date= new Date();		
+		var modJson= {Content:data.Content, Status:data.Status, CreatedDate:date.getTime()};
+		//console.log('logging');
+		if(form.$valid)
+		{						
+				kinvey.addData(modJson).success(function(data, status) {
+      			window.alert("Task saved.");
+    		 }).error(function(data, status) {
+    		 	//add error message here
+    		 });    		 	
+    	}						
+>>>>>>> 22475ddda4b597e0cf89f6fb6451fa831783e0b6
 	};	
 	
 })

@@ -29,6 +29,7 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 			});
 		},
 		addData : function(data){			
+<<<<<<< HEAD
 			var resource=$resource(SERVICE_URL + '/Task');	
 			resource.save(data);
 			
@@ -36,10 +37,19 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 				//url: SERVICE_URL + '/Task',
 				//method: 'POST',				
 				//data:data
+=======
+			//var resource=$resource(SERVICE_URL + '/Task');	
+			//resource.save(data);			
+			 return $http({
+				url: SERVICE_URL + '/Task',
+				method: 'POST',				
+				data:data
+				});
+>>>>>>> 22475ddda4b597e0cf89f6fb6451fa831783e0b6
 			//}).error(function(data,status){
 				//$log.warn(data,status);
 			//});
-			*/
+			
 		}
 	};
 	
