@@ -29,17 +29,17 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 			});
 		},
 		addData : function(data){			
-			var resource=$resource(SERVICE_URL + '/Task');	
-			resource.save(data);
-			
-			/*$http({
-				//url: SERVICE_URL + '/Task',
-				//method: 'POST',				
-				//data:data
+			//var resource=$resource(SERVICE_URL + '/Task');	
+			//resource.save(data);			
+			 return $http({
+				url: SERVICE_URL + '/Task',
+				method: 'POST',				
+				data:data
+				});
 			//}).error(function(data,status){
 				//$log.warn(data,status);
 			//});
-			*/
+			
 		}
 	};
 	
