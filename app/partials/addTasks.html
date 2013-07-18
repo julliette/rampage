@@ -1,20 +1,23 @@
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h3><center>New Task</center></h3>
+<div id="addTaskModal">
+	<div class="modal-header">
+		<h3 ng-show="message != ''" class="message">{{message}}</h3>
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3><center>New Task</center></h3>
+	</div>
+	<hr />
+	<div class="modal-body">
+		<form name="newTaskForm">
+	    <fieldset>
+	        <label for="taskContent">Content</label>
+	        <input id="taskContent" type="text" required placeholder="Your Task Content..." ng-model="task.Content" />
+	        <label for="taskStatus">Status</label>
+	        <input id="taskStatus" type="text" required placeholder="Your Task Status..."  ng-model="task.Status" />
+	    </fieldset>	    
+		</form>
+	</div>  
+	<div class="modal-footer">
+		<button type="submit" class="btn btn-primary" ng-disabled="newTaskForm.$invalid" ng-click="saveTask(task,newTaskForm)">Submit</button>
+	    <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+	</div>      
 </div>
-<hr />
-<div class="modal-body">
-	<form name="newTaskForm">
-    <fieldset>
-        <label for="taskContent">Content</label>
-        <input id="taskContent" type="text" required placeholder="Your Task Content..." ng-model="task.Content" />
-        <label for="taskStatus">Status</label>
-        <input id="taskStatus" type="text" required placeholder="Your Task Status..."  ng-model="task.Status" />
-    </fieldset>
-
-    <button type="submit" class="btn btn-primary" ng-disabled="newTaskForm.$invalid" ng-click="saveTask(task,newTaskForm)">Submit</button>
-    <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
-</form>
-</div>        
-
 	
