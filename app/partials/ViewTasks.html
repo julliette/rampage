@@ -1,7 +1,8 @@
 <h2>Tasks :</h2>
 <br />
-<button class="btn btn-large" style:"width:400px;" type="button" ng-click="showOverlay=true" ng-init="showOverlay=false" >Add new task</button>&nbsp;&nbsp;
-<!--button class="btn btn-large" type="button" ng-click="refreshPage"><i class="icon-refresh"></i>&nbsp;Refresh</button-->
+<button class="btn btn-large btn-success" style:"width:400px;" type="button" ng-click="displayOverlay()" ng-init="showOverlay=false" >
+	<i class="icon-user"></i>&nbsp;Add new task
+</button>
 <br /><br />
 <div ng-switch on="hasData">
 	<div class="TasksList" ng-switch-when="true">
@@ -18,7 +19,7 @@
  <div ng-show="showOverlay" class="overlay">
  	<div id="Content">
  		<div class="container content">
- 			<form name="addTasksForm">
+ 			<form name="addTaskForm" id="newTaskForm">
  				<h2>Enter information for a new task:</h2>
  				<hr />
  				<fieldset>
@@ -29,8 +30,8 @@
 		 			<input id="newTaskStatus" type="text" required ng-model="newTask.Status" placeholder="Status of your task..."/>
 	 			</fieldset>
 	 			<br />
-	 			<button type="submit" class="btn btn-primary" ng-click="createTask(newTask)" ng-disabled="addTasksForm.$invalid">Submit</button>&nbsp;
-		 		<button type="button" class="btn btn-primary" ng-click="showOverlay=false">Cancel</button>
+	 			<button type="submit" class="btn btn-primary" ng-click="createTask(newTask)" ng-disabled="addTaskForm.$invalid">Submit</button>&nbsp;
+		 		<button type="button" class="btn btn-primary" ng-click="hideOverlay()">Cancel</button>
  			</form>
  		</div>
  	</div>
