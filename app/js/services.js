@@ -30,7 +30,8 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 		},
 		addData : function(data){			
 			var resource=$resource(SERVICE_URL + '/Task');	
-			resource.save(data);			
+			resource.save(data);
+			
 			/*$http({
 				//url: SERVICE_URL + '/Task',
 				//method: 'POST',				
@@ -40,7 +41,6 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 			//});
 			*/
 		}
-	
 	};
 	
 	return service;

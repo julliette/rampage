@@ -5,7 +5,8 @@
 describe('controllers', function() {
 	var scope, control, $httpBackend;
 
-	beforeEach(module('rampage', 'rampage.controllers', 'rampage.services'));
+	beforeEach(module('rampage', 'rampage.controllers', 'rampage.services','$strap.directives'));
+	
 	
 	beforeEach(inject(function($rootScope, _$httpBackend_) {
 		$httpBackend = _$httpBackend_;
