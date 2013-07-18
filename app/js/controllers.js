@@ -30,7 +30,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 		//console.log('logging');
 		if(form.$valid){						
 				kinvey.addData(modJson);
-				$scope.addTaskModal.hide();
+				//$scope.addTaskModal.hide();
 				//$('.addTaskModal').modal('hide');
         	}        		
 			window.alert("Task saved.")
@@ -41,6 +41,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 				$scope.message = "Failed to create new task. Please try again: " + error.status;
 			});		*/				
 	};	
+	
 })
 .controller('MyCtrl2',function MyCtrl2() {
 	
