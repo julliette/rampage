@@ -65,9 +65,9 @@ describe('controllers', function() {
 		
 	})
 
-	describe('TasksController tests', function() {
+	describe('TaskController tests', function() {
 		it('should display tasks in the order in which it was entered', inject(function($controller, SERVICE_URL, kinvey) {
-		var data = [{ 
+		var data = [{  
 			_id: "51e586db48ad8b6579021138",
 			Status: "Incomplete",
 			Content: "View Tasks"
@@ -97,7 +97,7 @@ describe('controllers', function() {
 				 
 		$httpBackend.expectGET(SERVICE_URL +'/Task').respond(data);
 		
-		control = $controller('TasksController', {
+		control = $controller('TaskController', {
 			$scope : scope,
 			kinvey : kinvey
 		})

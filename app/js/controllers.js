@@ -12,7 +12,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 		$scope.data = error || "Ping request failed"; });
 			
 
-}).controller('TasksController',function TasksController($scope, kinvey) {
+}).controller('TaskController',function TaskController($scope, kinvey) {
 	//Service call to retrieve data from Kinvey service
 	$scope.message = "No tasks are present";
 	$scope.hasData = "";

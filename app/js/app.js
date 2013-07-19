@@ -9,11 +9,11 @@ function($routeProvider) {
 	});
 	$routeProvider.when('/view2', {
 		templateUrl : 'partials/partial2.html',
-		controller : 'TasksController'
+		controller : 'TaskController'
 	});
 	$routeProvider.when('/viewTasks', {
 		templateUrl : 'partials/ViewTasks.html',
-		controller : 'TasksController'
+		controller : 'TaskController'
 	});
 	$routeProvider.otherwise({
 		redirectTo : '/view1'
