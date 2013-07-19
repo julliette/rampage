@@ -8,14 +8,15 @@ angular.module('rampage.controllers', ['rampage.services'])
 	kinvey.ping().then(function(data) {
 		$scope.data = data.data;
 		$scope.status = data.status;
-	}, function(data) {
-		$scope.data = data || "Request failed"; });
+	}, function(error) {
+		$scope.data = error || "Ping request failed"; });
 			
 
-}).controller('MyCtrl2',function MyCtrl2($scope, kinvey) {
+}).controller('TasksController',function TasksController($scope, kinvey) {
 	//Service call to retrieve data from Kinvey service
 	$scope.message = "No tasks are present";
 	$scope.hasData = "";
+	$scope.errorMesssage = "";
 		
 	kinvey.getData().then(function(data){
 		
@@ -24,9 +25,9 @@ angular.module('rampage.controllers', ['rampage.services'])
 			//console.log("Tasks are present");
 			$scope.hasData = true;
 		}
-		else
-			$scope.hasData = false;
-	})	
+	}, function(error) {
+		$scope.errorMessage = "Get Tasks Request failed"; 
+	});	
 	
 	$scope.createTask = function(newTask){
 		//console.log('post data');
@@ -41,6 +42,16 @@ angular.module('rampage.controllers', ['rampage.services'])
 		$scope.tasks.push(newTask);
 		window.alert('The task ' + jsonTask.Content + ' has been saved!');
 		$scope.hideOverlay();
+	}, function(error) {
+		$scope.errorMessage = "Post task request failed, task could not be saved";
+	}
+	
+	$scope.editTask = function(oldTask){
+		//window.alert(oldTask.Content);
+	}
+	
+	$scope.deleteTask = function(task){
+		//window.alert(task.Content);
 	}
 	
 	$scope.displayOverlay = function() {

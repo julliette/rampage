@@ -54,3 +54,22 @@
 	border-width: 10px;
 	background-color: white;
 }
+
+.wrapper{
+	width: 900px;
+    overflow: hidden;
+}
+
+.btnContainer{
+	width: 200px;
+    float:left;
+}
+
+.taskDataContainer{
+	width:650px;
+	overflow:hidden;
+}
+
+.taskDataContainer span{
+	margin: 0px 0px 0px -250px;
+}

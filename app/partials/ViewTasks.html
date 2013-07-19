@@ -7,15 +7,20 @@
 <div ng-switch on="hasData">
 	<div class="TasksList" ng-switch-when="true">
 		<pre ng-repeat="task in tasks | orderBy:'CreatedDate'">
-			<p>{{task.Content}}<span> | {{task.Status}}</span></p>
+			<div class="wrapper">
+				<div class="btnContainer">
+					<button class="btn" style="width:85px;" ng-click="editTask(task)"><i class="icon-edit"></i>&nbsp;Edit</button>
+					<button class="btn" ng-click="deleteTask(task)"><i class="icon-remove"></i>&nbsp;Delete</button>
+				</div>
+				<div class="taskDataContainer">
+					<span>{{task.Content}} | {{task.Status}}</span>
+				</div>
+			</div>			
   		</pre>
   	</div>
-  	<div class="message" ng-switch-when="false">
-  		{{message}}
-  	</div>
+  	<div class="message" ng-switch-when="false">{{message}}</div>
  </div>
- <div>
- </div>
+ <div ng-show="errorMessage !=''" class="message">{{errorMessage}}</div>
  <div ng-show="showOverlay" class="overlay">
  	<div id="Content">
  		<div class="container content">
@@ -24,10 +29,10 @@
  				<hr />
  				<fieldset>
 		 			<label for="newTaskContent">Task Content:</label>
-		 			<input id="newTaskContent" type="text" required ng-model="newTask.Content" placeholder="Content of your task..."/>
+		 			<input id="newTaskContent" type="text" ng-required="true" ng-model="newTask.Content" placeholder="Content of your task..."/>
 		 			
 		 			<label for="newTaskStatus">Task Status:</label>
-		 			<input id="newTaskStatus" type="text" required ng-model="newTask.Status" placeholder="Status of your task..."/>
+		 			<input id="newTaskStatus" type="text" ng-required="true" ng-model="newTask.Status" placeholder="Status of your task..."/>
 	 			</fieldset>
 	 			<br />
 	 			<button type="submit" class="btn btn-primary" ng-click="createTask(newTask)" ng-disabled="addTaskForm.$invalid">Submit</button>&nbsp;
