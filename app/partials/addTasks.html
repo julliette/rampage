@@ -1,24 +1,24 @@
 
 <div class="addTaskModal">
 	<div class="modal-header">
-		<h3><center>New Task</center></h3>
+		<h3 ng-bind-html="taskHeader">New Task</h3>
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>		
 	</div>
 	<hr />
 	<div class="modal-body">
-		<form name="newTaskForm">
+		<form name="newTaskForm" id="newTaskForm">
 	    <fieldset>
 	        <div style="float: left;">
 	        <label for="taskContent">Content</label>
 	        </div>
 	        <div style="margin-left: 80px;">
-	        <input id="taskContent" type="text" required placeholder="Your Task Content..." ng-model="task.Content" />
+	        <input id="taskContent" type="text" required placeholder="Your Task Content..." ng-model="task.Content"/>
 	        </div>
 	        <div style="float: left;">
 	        <label for="taskStatus">Status</label>
 	        </div>
 	        <div style="margin-left: 80px;">
-	        <input id="taskStatus" type="text" required placeholder="Your Task Status..."  ng-model="task.Status" />
+	        <input id="taskStatus" type="text" required placeholder="Your Task Status..."  ng-model="task.Status"/>
 	    	</div>
 	    </fieldset>	    
 		</form>

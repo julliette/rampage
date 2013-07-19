@@ -89,6 +89,7 @@ describe('controllers', function() {
 				Content: "Assign Tasks",
 				Status: "Incomplete"				
 				 }];  			
+		
 		it ('should return the list of tasks', inject(function($controller, SERVICE_URL, kinvey) {
 			$httpBackend.expectGET(SERVICE_URL + '/Task').respond(data);
 			
@@ -98,9 +99,10 @@ describe('controllers', function() {
 			});
 			
 			$httpBackend.flush();
-			expect(scope.data).toEqual(data);
+			expect(scope.data).toEqual(data); 
 			
 		}));	
+		
 		
 		
 		/*

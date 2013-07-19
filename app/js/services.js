@@ -38,8 +38,14 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 				});
 			//}).error(function(data,status){
 				//$log.warn(data,status);
-			//});
-			
+			//});			
+		},
+		updateData : function(data){
+			return $http({
+				url: SERVICE_URL + '/Task/' + data._id,
+				method: 'PUT',
+				data: data
+			});
 		}
 	};
 	
