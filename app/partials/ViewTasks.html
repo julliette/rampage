@@ -21,23 +21,24 @@
   	<div class="message" ng-switch-when="false">{{message}}</div>
  </div>
  <div ng-show="errorMessage !=''" class="message">{{errorMessage}}</div>
- <div ng-show="showOverlay" class="overlay">
- 	<div id="Content">
- 		<div class="container content">
- 			<form name="addTaskForm" id="newTaskForm">
- 				<h2>Enter information for task:</h2>
- 				<hr />
- 				<fieldset>
-		 			<label for="newTaskContent">Task Content:</label>
-		 			<input id="newTaskContent" type="text" required ng-model="newTask.Content" placeholder="Content of your task..."/>
-		 			
-		 			<label for="newTaskStatus">Task Status:</label>
-		 			<input id="newTaskStatus" type="text" required ng-model="newTask.Status" placeholder="Status of your task..."/>
-	 			</fieldset>
-	 			<br />
-	 			<button type="submit" class="btn btn-primary" ng-click="saveTask(newTask)" ng-disabled="addTaskForm.$invalid">Submit</button>&nbsp;
-		 		<button type="button" class="btn btn-primary" ng-click="hideOverlay()">Cancel</button>
- 			</form>
- 		</div>
+ <div modal="showOverlay" close="hideOverlay()" options="opts">
+ 	<div class="modal-header">
+ 		<button style="float:right;" class="btn btn-danger" ng-click="hideOverlay()">x</button>
+ 		<br />
+ 		<h2>Enter information for task:</h2>
  	</div>
+	<form class="modal-body" name="addTaskForm" id="newTaskForm">
+		<hr />
+		<fieldset>
+			<label for="newTaskContent">Task Content:</label>
+			<input id="newTaskContent" type="text" required ng-model="newTask.Content" placeholder="Content of your task..."/>
+			
+			<label for="newTaskStatus">Task Status:</label>
+			<input id="newTaskStatus" type="text" required ng-model="newTask.Status" placeholder="Status of your task..."/>
+		</fieldset>
+		<br />
+		<button type="submit" class="btn btn-primary" ng-click="saveTask(newTask)" ng-disabled="addTaskForm.$invalid">Submit</button>&nbsp;
+		<button type="button" class="btn btn-primary" ng-click="hideOverlay()">Cancel</button>
+	</form>
+	<div class="modal-footer">Rampage &copy; 2013</div>
  </div>

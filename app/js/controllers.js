@@ -84,6 +84,11 @@ angular.module('rampage.controllers', ['rampage.services'])
 		$scope.showOverlay = false;
 	}
 	
+	$scope.opts = {
+    backdropFade: true,
+    dialogFade:true
+  	};
+	
 	
 }).controller('MyCtrl3', function() {
 
