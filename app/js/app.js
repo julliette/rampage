@@ -4,12 +4,12 @@
 angular.module('rampage', ['rampage.filters', 'rampage.services', 'rampage.directives', 'rampage.controllers']).config(['$routeProvider',
 function($routeProvider) {
 	$routeProvider.when('/view1', {
-		templateUrl : 'partials/partial1.html',
-		controller : 'MyCtrl1'
+		templateUrl : 'partials/viewtasks.tpl.html',
+		controller : 'TaskController'
 	});
 	$routeProvider.when('/view2', {
 		templateUrl : 'partials/partial2.html',
-		controller : 'MyCtrl2'
+		controller : 'TaskController'
 	});
 	$routeProvider.otherwise({
 		redirectTo : '/view1'

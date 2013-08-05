@@ -1,0 +1,17 @@
+<p>
+	Tasks appear below
+</p>
+<p></p>
+<pre>http status code: {{status}}</pre>
+<pre>http response data: {{data}}</pre>
+
+<div ng-switch on="tasksFound">
+	<div class="TaskList" ng-switch-when="true">
+		<div ng-repeat="task in tasks | orderBy:'CreatedDate'">
+			<span>{{task.Content}} | {{task.Status}} | {{task.CreatedDate}}</span>
+		</div>
+	</div>
+	<div class="NoTaskList" ng-switch-when="false">
+		No Tasks.
+	</div>
+</div>

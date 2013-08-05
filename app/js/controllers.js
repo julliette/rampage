@@ -12,7 +12,22 @@ angular.module('rampage.controllers', ['rampage.services'])
 		$scope.data = data || "Request failed";
 	});
 
-}).controller('MyCtrl2', [
-function() {
+}).controller('TaskController', function MyCtrl2($scope, kinvey) {
 
-}]); 
+	// get the data, if data is returned extract the number of rows
+	// then assign the return value to tasks
+	$scope.tasksFound = "";
+	kinvey.getTasks().then(function(data){
+		$scope.tasks = data.data
+		if ($scope.tasks.length > 0){
+			//console.log("Tasks are present");
+			$scope.taskCount = $scope.tasks.length;
+			$scope.tasks = data.data;
+			$scope.tasksFound = true;
+		}
+	}, function(error) {
+		$scope.errorMessage = "Kinvey Task Request Failes"; 
+	});
+
+}
+); 
