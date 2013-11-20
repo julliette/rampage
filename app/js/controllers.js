@@ -11,6 +11,16 @@ angular.module('rampage.controllers', ['rampage.services'])
 	}, function(data) {
 		$scope.data = data || "Request failed";
 	});
+	
+	
+	kinvey.listTasks().then(function(data){
+		console.log(data);
+		$scope.data = data.data;
+		$scope.status = data.status;
+	}, function(data) {
+		$scope.data = data || "Request failed";
+	});
+	
 
 }).controller('MyCtrl2', [
 function() {
