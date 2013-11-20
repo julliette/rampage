@@ -12,32 +12,57 @@ angular.module('rampage.controllers', ['rampage.services'])
 		$scope.data = data || "Request failed";
 	});
 
-}).controller('MyCtrl2', [
+})
+.controller('MyCtrl2', [
 function() {
 
 }])
 
 .controller('TaskListCtrl', function TaskListCtrl($scope, kinvey) {
-	kinvey.task().then(function(data) {
-		$scope.message=data.data.length==0?"No Tasks":"";
-		$scope.tasks = data.data;
+	/*kinvey.task().then(function(data) {
+		//$scope.message=data.data.length==0?"No Tasks":"";
+		//$scope.tasks = data.data;
+		
 	}, function(data) {
 		$scope.data = data || "Request failed";
-	});
+	});*/
+	$scope.tasks=[{'Content':'test','Status': 'Complete','CreatedDate':'Today'}];
+	$scope.add = function() {
+    	$('#popup').removeClass('hidden');
+    	$('#popup').addClass('overlay');
+    	var content = $scope.content;
+    	var status = $scope.status;
+    	$scope.status = $scope.content = "";
+    	$scope.title="Add Task";
+ 	};
 	
-	$scope.edit = function() {
-    	alert("Test!");
+	$scope.edit = function(task) {
+    	$('#popup').removeClass('hidden');
+    	$('#popup').addClass('overlay');
+    	$scope.title="Edit Task";
+    	$scope.status = $scope.list;
+    	console.log(task);
  	};
  	
  	$scope.cancel = function() {
     	$('#popup').removeClass('overlay');
     	$('#popup').addClass('hidden');
+    	$scope.status = $scope.content = "";
  	};
  	
- 	
- 	$scope.add = function () {
-
-    };
+ 	$scope.save = function() {
+    	console.log($scope.tasks);
+    	var content = $scope.task.Content;
+		$scope.errorContent = content==""?"*required":"";
+		console.log($scope.task);
+    	var status = $scope.status;
+		$scope.errorStatus = status==""?"*required":"";
+		
+    	if(content!="" && status!=""){
+    		$('#popup').removeClass('overlay');
+    		$('#popup').addClass('hidden');
+    	}
+ 	};
 })
 
 

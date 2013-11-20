@@ -15,10 +15,6 @@ function($routeProvider) {
 		templateUrl : 'partials/tasklist.html',
 		controller : 'TaskListCtrl'
 	});
-	$routeProvider.when('/addtask', {
-		templateUrl : 'partials/addtask.html',
-		controller : 'AddTaskCtrl'
-	});
 	$routeProvider.otherwise({
 		redirectTo : '/view1'
 	});

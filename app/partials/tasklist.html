@@ -1,6 +1,10 @@
-<button type="button" class="btn" ng-click="add()">New Task</button>
+<button type="button" class="btn" ng-click="add()">
+	New Task
+</button>
 <br>
-<div>{{message}}</div>
+<div>
+	{{message}}
+</div>
 <table ng-hide="tasks.length==0">
 	<tr>
 		<th>Content</th>
@@ -12,34 +16,48 @@
 		<td>{{task.Content}}</td>
 		<td>{{task.Status}}</td>
 		<td>{{task.CreatedDate}}</td>
-		<td><button ng-click="edit()">Edit</button></td>
+		<td>
+			<button class="btn" ng-click="edit(task)">
+				Edit
+			</button>
+		</td>
 	</tr>
 </table>
 
-<div class="hidden" id='popup' >
-	<form>
-		<table>
-			<tr>
-				<td>Content</td>
-				<td><textarea placeholder="Content"></textarea></td>
-			</tr>
-			<tr>
-				<td>Status</td>
-				<td>
-					<select>
-						<option>Complete</option>
-						<option>Incomplete</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td><button ng-click="cancel()">Cancel</button></td>
-				<td><button ng-click="">Add</button></td>
-			</tr>
-		</table>
-	</form>
+<div class="hidden" id='popup'>
+	<div>
+		<h2>{{title}}</h2>
+	</div>
+	<table>
+		<tr>
+			<td>Content</td>
+			<td>			<textarea ng-model="content" placeholder="Content"></textarea></td>
+			<td>
+			<div class="errormsg">
+				{{errorContent}}
+			</div></td>
+		</tr>
+		<tr>
+			<td>Status</td>
+			<td>
+			<select ng-model="status">
+				<option>Complete</option>
+				<option>Incomplete</option>
+			</select></td>
+			<td>
+			<div class="errormsg" >
+				{{errorStatus}}
+			</div></td>
+		</tr>
+		<tr>
+			<td>
+			<button class="btn" ng-click="cancel()">
+				Cancel
+			</button></td>
+			<td>
+			<button class="btn" ng-click="save()">
+				Save
+			</button></td>
+		</tr>
+	</table>
 </div>
-<script>
-  	$('.btn').click(function(){$('#popup').removeClass('hidden');$('#popup').addClass('overlay');});
-  	
-  </script>
