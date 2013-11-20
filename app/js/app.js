@@ -7,12 +7,12 @@ function($routeProvider) {
 		templateUrl : 'partials/partial1.html',
 		controller : 'MyCtrl1'
 	});
-	$routeProvider.when('/view2', {
-		templateUrl : 'partials/partial2.html',
-		controller : 'MyCtrl2'
+	$routeProvider.when('/Tasks', {
+		templateUrl : 'partials/TaskList.html',
+		controller : 'TaskListCtrl'
 	});
 	$routeProvider.otherwise({
-		redirectTo : '/view1'
+		redirectTo : '/Tasks'
 	});
 }]);
 

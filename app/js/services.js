@@ -21,7 +21,17 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 				url: SERVICE_URL,
 				method: 'GET'
 			});
+		},
+		
+		allTasks:function(){
+			var taskURL = 'https://baas.kinvey.com/appdata/kid_Te0iCbYsYf/Task';
+			return $http({
+				url: taskURL,
+				method:'GET'
+			});
+			
 		}
+		
 	};
 	
 	return service;

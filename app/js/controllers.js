@@ -2,8 +2,9 @@
 
 /* Controllers */
 
-angular.module('rampage.controllers', ['rampage.services'])
-.controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
+var app = angular.module('rampage.controllers', ['rampage.services']);
+
+app.controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
 
 	kinvey.ping().then(function(data) {
 		$scope.data = data.data;
@@ -12,7 +13,16 @@ angular.module('rampage.controllers', ['rampage.services'])
 		$scope.data = data || "Request failed";
 	});
 
-}).controller('MyCtrl2', [
-function() {
+}).controller('TaskListCtrl', function TaskListCtrl($scope, kinvey) {
 
-}]); 
+	kinvey.allTasks().then(function(response){
+		
+		$scope.tasks = response.data;
+
+		
+	}, function(error){
+		console.log('Error: ' + error);
+	});
+	
+	
+});
