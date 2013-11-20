@@ -1,0 +1,14 @@
+<table>
+	<tr>
+		<th>Content</th>
+		<th>Status</th>
+		<th>Created Date</th>
+		<th>Edit</th>
+	</tr>
+	<tr ng-repeat="task in tasks">
+		<td>{{task.Content}}</td>
+		<td>{{task.Status}}</td>
+		<td>{{task.CreatedDate}}</td>
+		<td><input type="button" value="Edit"/></td>
+	</tr>
+</table>
