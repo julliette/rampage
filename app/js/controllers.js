@@ -19,14 +19,14 @@ function() {
 }])
 
 .controller('TaskListCtrl', function TaskListCtrl($scope, kinvey) {
-	/*kinvey.task().then(function(data) {
-		//$scope.message=data.data.length==0?"No Tasks":"";
-		//$scope.tasks = data.data;
+	kinvey.task().then(function(data) {
+		$scope.message=data.data.length==0?"No Tasks":"";
+		$scope.tasks = data.data;
 		
 	}, function(data) {
 		$scope.data = data || "Request failed";
-	});*/
-	$scope.tasks=[{'Content':'test','Status': 'Complete','CreatedDate':'Today'}];
+	});
+	
 	$scope.add = function() {
     	$('#popup').removeClass('hidden');
     	$('#popup').addClass('overlay');
