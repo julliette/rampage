@@ -4,16 +4,22 @@
   <meta charset="utf-8">
   <title>My AngularJS App</title>
   <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/bootstrap-responsive.min.css"/>
+  <script src="lib/jquery-2.0.2.js"></script>
+  <script src="lib/bootstrap.min.js"></script>
 </head>
 <body>
   <ul class="menu">
     <li><a href="#/view1">view1</a></li>
     <li><a href="#/view2">view2</a></li>
+    <li><a href="#/tasklist">Task List</a></li>
+    <li><a href="#/addtask">New Task</a></li>
   </ul>
 
   <div ng-view></div>
 
-  <div>Angular seed app: v<span app-version></span></div>
+  <!--<div>Angular seed app: v<span app-version></span></div>-->
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
@@ -25,5 +31,6 @@
   <script src="js/controllers.js"></script>
   <script src="js/filters.js"></script>
   <script src="js/directives.js"></script>
+  
 </body>
 </html>
