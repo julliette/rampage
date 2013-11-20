@@ -1,0 +1,19 @@
+<table>
+	<thead>
+		<th>Task</th>
+		<th>Status</th>
+		<th>Created</th>
+	</thead>
+	<tbody>
+		<tr ng-repeat="task in tasks | orderBy:'CreatedDate'" id="task_{{task._id}}">
+			<td>{{task.Content}}</td>
+			<td>{{task.Status}}</td>
+			<td>{{task.CreatedDate | date:'medium'}}</td>
+		</tr>
+		<tr ng-hide="tasks.length">
+			<td colspan="3">
+				There are no tasks :)
+			</td>
+		</tr>
+	</tbody>
+</table>
