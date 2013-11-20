@@ -3,7 +3,8 @@
 /* Controllers */
 
 angular.module('rampage.controllers', ['rampage.services'])
-.controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
+
+.controller('homeCtrl', function MyCtrl1($scope, kinvey) {
 
 	kinvey.ping().then(function(data) {
 		$scope.data = data.data;
@@ -12,17 +13,42 @@ angular.module('rampage.controllers', ['rampage.services'])
 		$scope.data = data || "Request failed";
 	});
 	
-	
 	kinvey.listTasks().then(function(data){
-		console.log(data);
-		$scope.data = data.data;
+		$scope.tasks = data.data;
 		$scope.status = data.status;
 	}, function(data) {
-		$scope.data = data || "Request failed";
+		$scope.tasks = data || "Request failed";
 	});
+})
+
+.controller('newCtrl', function newCtrl($scope, kinvey) {
 	
+	//Creates a task buy using a button click
+	$scope.addTask = function(){
+		
+		kinvey.saveTask().then(function(data){
+			//If data was successful we will hide the div
+			
+		}, function(data) {
+			//if not show an error message
+			alert('Unable to create new task');
+			
+			$scope.tasks = data || "Request failed";
+		});
+	
+	};
+	
+})
 
-}).controller('MyCtrl2', [
-function() {
-
-}]); 
+.controller('editCtrl', function editCtrl($scope, kinvey) {
+	$scope.editTask = function(){
+		kinvey.editTask().then(function(data){
+		
+		}, function(data) {
+			$scope.tasks = data || "Request failed";
+		});
+	
+	
+	};
+	
+}); 

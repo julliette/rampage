@@ -1,0 +1,35 @@
+<div class="">
+<section>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Content</th>
+				<th>Created Date</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr ng-show = "tasks.length==0">
+				<td>
+					No Tasks!
+				</td>
+			</tr>
+			
+			<tr ng-repeat="task in tasks | orderBy: 'CreatedDate'">
+				<td>{{task.Content}}</td>
+				<td>{{task.CreatedDate | date:'EEE MMMM, d yyyy'}}</td>
+				<td>{{task.Status}}</td>
+				<td><a ng-click="" class="label label-success">Edit</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+</section>
+<br />
+<section>
+	<h1>Ping status</h1>
+	<p>Data: {{data}}</p>
+	<p>Status: {{status}}</p>
+</section>
+</div>
