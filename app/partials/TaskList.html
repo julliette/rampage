@@ -1,3 +1,21 @@
+
+<div class="">
+	<form>
+		<label>Task:</label> <input type="text" ng-model="newTask.Content" ng-required="true"/>
+		<span>*</span>
+		<label>Status:</label>
+		<select ng-model="newTask.Status">
+	  		<option value="Incomplete">Incomplete</option>
+			<option value="Complete">Complete</option>
+		</select>
+		
+		<span>Fill in the required fields.</span>
+		<button ng-click="addNewTask()">Add Task</button>
+		
+		<button ng-click="cancel()">Cancel</button>
+	</form>
+</div>
+
 <table>
 	<thead>
 		<th>Task</th>
@@ -17,3 +35,4 @@
 		</tr>
 	</tbody>
 </table>
+
