@@ -4,12 +4,14 @@
 		<th>Task</th>
 		<th>Status</th>
 		<th>Created</th>
+		<th>Edit</th>
 	</thead>
 	<tbody>
 		<tr ng-repeat="task in tasks | orderBy:'CreatedDate'" id="task_{{task._id}}">
 			<td>{{task.Content}}</td>
 			<td>{{task.Status}}</td>
 			<td>{{task.CreatedDate | date:'medium'}}</td>
+			<td><button ng-click="editTask({{task._id}})">Edit</button></td>
 		</tr>
 		<tr ng-hide="tasks.length">
 			<td colspan="3">

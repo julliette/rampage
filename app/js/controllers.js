@@ -104,5 +104,59 @@ app.controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
 };*/
 	
 	};
+
+	
+	$scope.editTask = function(id){
+		
+		
+		 var modalPromise= $modal({
+	      template: 'partials/TaskDetails.html',persist:true,
+	      show:false,
+	      backdrop:'static',
+	      scope:$scope
+	     
+	    });
+	
+	    $q.when(modalPromise).then(function (modalElement){
+			kinvey.getTask(id).then(function(response)
+					{
+						$scope.newTask = response.data;						
+					},function(error){
+							
+						$log.error('Error: ' + error);
+					});
+	    	
+	    	modalElement.modal('show');
+	    	
+	    });
+	    
+	    
+	    $scope.saveTask = function(){
+	    	$scope.newTask.CreatedDate = (new Date()).getTime();
 			
+			kinvey.addTask($scope.newTask).then(function(response)
+				{
+					//$scope.initList();
+					//$scope.cancel();
+					$scope.tasks.push(response.data);
+					$scope.cleanUp();
+					
+				},function(error){
+						
+					$log.error('Error: ' + error);
+				});
+			
+	    };
+	    
+	    $scope.cancelSaveTaskDialog= function(){
+	    	$scope.cleanUp();
+	    };
+	    
+	    $scope.cleanUp = function(){
+	    	
+			$scope.newTask = {};	    	
+	    
+	    };	
+	};
+	
 });
