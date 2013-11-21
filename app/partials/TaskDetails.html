@@ -1,0 +1,22 @@
+<div class="">
+	<div class="modal-header">
+		<button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancelSaveTaskDialog(); hide()">x</button>
+		<h3 ng-show="true">Create New Task</h3>
+	</div>
+	<form name="myForm" class="form-horizontal">
+		
+		<div class="modal-body">
+			<label>Task:</label> <input type="text" ng-model="newTask.Content" />
+			<!--<span ng-show="myForm.input.$error.required">*</span>-->
+			<label>Status:</label>
+			<select ng-model="newTask.Status">
+		  		<option value="Incomplete">Incomplete</option>
+				<option value="Complete">Complete</option>
+			</select>
+			
+			<button ng-click="saveTask(); hide()"  >Add Task</button>
+			
+			<button ng-click="cancelSaveTaskDialog(); hide()">Cancel</button>
+		</div>
+	</form>
+</div>
