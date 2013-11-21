@@ -24,11 +24,12 @@ angular.module('rampage.controllers', ['rampage.services'])
 .controller('newCtrl', function newCtrl($scope, kinvey) {
 	
 	//Creates a task buy using a button click
-	$scope.addTask = function(){
+//	$scope.addTask = function(){
 
-		kinvey.saveTask().then(function(data){
+		kinvey.saveTask().then(function(funContent, funStatus){
 			//If data was successful we will hide the div
-			
+			$scope.content = funContent;
+			$scope.status = funStatus;
 		}, function(data) {
 			//if not show an error message
 			alert('Unable to create new task');
@@ -36,7 +37,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 			$scope.tasks = data || "Request failed";
 		});
 	
-	};
+//	};
 	
 })
 .controller('detailsCtrl', function detailsCtrl($scope, kinvey, $routeParams){
