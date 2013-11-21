@@ -15,15 +15,18 @@ angular.module('rampage.controllers', ['rampage.services'])
 }).controller('MyCtrl2', 
 function($scope, kinvey, $location, GLOBAL_CONFIG, $route) {
 	$scope.count = 0;
+
 	$scope.currentPage = $route.current.params.pageNumber || 1;
-	$scope.route = $route;
+	$scope.pageNumber = $route.current.params.pageNumber - 0;
+	$scope.pageCount = 0;
+	//$scope.route = $route;
 	//TEST
 	console.log(GLOBAL_CONFIG);
 	console.log($route.current);
 
 	kinvey.countTask().then(function(result){
 		$scope.count = result.data.count;
-
+		$scope.pageCount = Math.ceil($scope.count/GLOBAL_CONFIG.itemsPerPage);
 	}, function(error){
 		alert(error);
 	}).then(function(){

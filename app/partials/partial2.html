@@ -1,5 +1,5 @@
 <div class="container">
-	<div><pager page-number="route.current.params.pageNumber"/></div>
+	<div><pager page-number="pageNumber" page-count="pageCount"/></div>
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Task</button>
 	<br/>
 	<table class="table" ng-show="tasks.length > 0">
@@ -48,6 +48,7 @@
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
