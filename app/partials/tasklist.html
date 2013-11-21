@@ -2,8 +2,8 @@
 	New Task
 </button>
 <br>
-<div>
-	{{message}}
+<div ng-show="tasks.length==0">
+	No Tasks
 </div>
 <table ng-hide="tasks.length==0">
 	<tr>
@@ -12,42 +12,38 @@
 		<th>Created Date</th>
 		<th>Edit</th>
 	</tr>
-	<tr ng-repeat="task in tasks">
+	<tr ng-repeat="task in tasks|orderBy:'CreatedDate'">
 		<td>{{task.Content}}</td>
 		<td>{{task.Status}}</td>
-		<td>{{task.CreatedDate}}</td>
+		<td>{{task.CreatedDate | date:'MMM dd yyyy' }}</td>
 		<td>
 			<button class="btn" ng-click="edit(task)">
 				Edit
 			</button>
 		</td>
+		<td ng-hide='true'>{{task._id}}</td>
 	</tr>
 </table>
 
 <div class="hidden" id='popup'>
+	<form name="popupBox">
 	<div>
 		<h2>{{title}}</h2>
 	</div>
 	<table>
 		<tr>
 			<td>Content</td>
-			<td>			<textarea ng-model="content" placeholder="Content"></textarea></td>
-			<td>
-			<div class="errormsg">
-				{{errorContent}}
-			</div></td>
+			<td><textarea required ng-model="content" placeholder="Content"></textarea></td>
+			<td>{{popupBox.input.$valid}}</td>
 		</tr>
 		<tr>
 			<td>Status</td>
 			<td>
-			<select ng-model="status">
+			<select required ng-model="status">
 				<option>Complete</option>
 				<option>Incomplete</option>
 			</select></td>
-			<td>
-			<div class="errormsg" >
-				{{errorStatus}}
-			</div></td>
+			<td>{{popupBox.input.$valid}}</td>
 		</tr>
 		<tr>
 			<td>
@@ -55,9 +51,16 @@
 				Cancel
 			</button></td>
 			<td>
-			<button class="btn" ng-click="save()">
+				<button ng-show="title=='Add Task'" class="btn" ng-click="addtask()">
+				Add
+				</button>
+				
+				<button ng-show="title=='Edit Task'" class="btn" ng-click="save()">
 				Save
-			</button></td>
+				</button>
+			
+			</td>
 		</tr>
 	</table>
+	</form>
 </div>

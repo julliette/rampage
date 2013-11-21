@@ -20,9 +20,7 @@ function() {
 
 .controller('TaskListCtrl', function TaskListCtrl($scope, kinvey) {
 	kinvey.task().then(function(data) {
-		$scope.message=data.data.length==0?"No Tasks":"";
 		$scope.tasks = data.data;
-		
 	}, function(data) {
 		$scope.data = data || "Request failed";
 	});
@@ -30,9 +28,7 @@ function() {
 	$scope.add = function() {
     	$('#popup').removeClass('hidden');
     	$('#popup').addClass('overlay');
-    	var content = $scope.content;
-    	var status = $scope.status;
-    	$scope.status = $scope.content = "";
+    	$scope.clearpopup();
     	$scope.title="Add Task";
  	};
 	
@@ -40,28 +36,40 @@ function() {
     	$('#popup').removeClass('hidden');
     	$('#popup').addClass('overlay');
     	$scope.title="Edit Task";
-    	$scope.status = $scope.list;
-    	console.log(task);
+    	$scope.content = task.Content;
+    	$scope.status = task.Status;
  	};
  	
  	$scope.cancel = function() {
     	$('#popup').removeClass('overlay');
     	$('#popup').addClass('hidden');
-    	$scope.status = $scope.content = "";
+    	$scope.clearpopup();
  	};
  	
  	$scope.save = function() {
-    	console.log($scope.tasks);
-    	var content = $scope.task.Content;
-		$scope.errorContent = content==""?"*required":"";
-		console.log($scope.task);
-    	var status = $scope.status;
-		$scope.errorStatus = status==""?"*required":"";
-		
-    	if(content!="" && status!=""){
+    	kinvey.edittask($scope).then(function() {
+			alert("Task Saved");
+			kinvey.task().then(function(data) {
+				$scope.tasks = data.data;
+			});
     		$('#popup').removeClass('overlay');
     		$('#popup').addClass('hidden');
-    	}
+		});
+ 	};
+ 	
+ 	$scope.addtask = function() {
+		kinvey.createtask($scope).then(function() {
+			alert("Task Added");
+			kinvey.task().then(function(data) {
+				$scope.tasks = data.data;
+			});
+    		$('#popup').removeClass('overlay');
+    		$('#popup').addClass('hidden');
+		});
+ 	};
+ 	
+ 	$scope.clearpopup= function(){
+    	$scope.status = $scope.content = "";
  	};
 })
 

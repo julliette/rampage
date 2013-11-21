@@ -27,6 +27,29 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 				url: SERVICE_URL+"/Task",
 				method: 'GET'
 			});
+		},
+		createtask : function($scope) {
+			return $http({
+				url: SERVICE_URL+"/Task",
+				method: 'POST',
+				data: {
+					'Content':$scope.content,
+					'Status' :$scope.status,
+					'CreatedDate': new Date()
+				}
+			});
+		},
+		edittask : function($scope) {
+			return $http({
+				url: SERVICE_URL+"/Task",
+				method: 'PUT',
+				params: {
+					'_id': $scope._id,
+					'Content':$scope.content,
+					'Status' :$scope.status,
+					'CreatedDate': new Date()
+					}
+			});
 		}
 	};
 	
