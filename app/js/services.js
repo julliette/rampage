@@ -32,13 +32,13 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 		},
 		
 		//creates a new task
-		saveTask: function($scope){
+		saveTask: function(content, status){
 			return $http({
 				url: SERVICE_URL + '/Task',
 				method: 'POST',
 				data: {
-					"Content": $scope.task.Content,
-					"Status": $scope.task.Status,
+					"Content": content,
+					"Status": status,
 					"CreatedDate":new Date().getTime()
 				}
 			});

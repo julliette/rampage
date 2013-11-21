@@ -16,9 +16,9 @@ function($routeProvider) {
 		controller : 'newCtrl'
 	});
 	
-	// $routeProvider.otherwise({
-	// 	redirectTo : '/home'
-	// });
+	$routeProvider.otherwise({
+		redirectTo : '/home'
+	});
 }]);
 
 angular.module('rampage').factory('SERVICE_URL', [
