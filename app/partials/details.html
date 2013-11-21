@@ -1,8 +1,8 @@
 <div>
 	<div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	<h3 ng-show="newTask">Create New Task</h3>
-	<h3 ng-hide="newTask">Task: {{task.Content}}</h3>
+	<h3 ng-show="!task.Content">Task not found</h3>
+	<h3 ng-show="task.Content">Task: {{task.Content}}</h3>
 	</div>
 	<form class="form-horizontal" name="taskForm">
 		<div class="modal-body">
@@ -29,11 +29,11 @@
 			<button type="button" class="btn pull-left" ng-click="hide()">
 			<i class="icon-remove"></i>Cancel
 			</button>
-			<button type="submit" class="btn btn-primary" ng-click="addTask()">
+			<button type="submit" class="btn btn-primary" ng-click="updateTask(task)">
 <!--</button>			<button type="submit" class="btn btn-primary" ng-click="modal.saved=true;saveTask(task);hide()">
 -->			<i class="icon-ok icon-white"></i>Save Changes
 			</button>
-			<button type="button" class="btn pull-right btn-danger" ng-click="deleteTask()">
+			<button type="button" class="btn pull-right btn-danger" ng-click="deleteTask(task)">
 			<i class="icon-remove"></i>Delete
 			</button>
 		</div>

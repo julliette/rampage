@@ -45,17 +45,31 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 		},
 		
 		//
-		editTask: function($scope){
+		editTask: function(taskData){
 		
 			return $http({
-				url: SERVICE_URL + '/Task/'+ $scope.task._id,
+				url: SERVICE_URL + '/Task/'+ taskData._id,
 				method: 'PUT',
 				data: {
-					"Content": $scope.task.Content,
-					"Status": $scope.task.Status,
-					"CreatedDate":$scope.task.CreateDate
+					"Content": taskData.Content,
+					"Status": taskData.Status,
+					"CreatedDate":taskData.CreateDate
 				}
 			});
+		},
+		deleteTask: function(taskId){
+			return $http({
+				url: SERVICE_URL+'/Task/'+taskId,
+				method: 'DELETE'
+			});
+		},
+		viewTask : function(taskId){
+
+			return $http({
+				url: SERVICE_URL+'/Task/'+ taskId,
+				method: 'GET'
+
+			})
 		}
 	};
 	

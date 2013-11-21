@@ -42,7 +42,47 @@ angular.module('rampage.controllers', ['rampage.services'])
 })
 .controller('detailsCtrl', function detailsCtrl($scope, kinvey, $routeParams){
 	
+		var taskId=$routeParams.task_Id;
+			
+		$scope.updateTask = function(task){
+			//if form is not valid exit
+			// if(!taskForm.$valid){
+			// 	alert(1);
+			// 	return;
+			// }
 
+			kinvey.editTask(task).then(function(data){
+				if(data){
+					alert("Update successful");
+				}
+			}, function(error){
+				alert("Oopps.. error: find google");
+			});
+
+
+		};
+
+		$scope.deleteTask = function(task){
+			var taskId= task._id;
+
+			//if form is not valid exit.
+			// if(!taskForm.$valid){
+			// 	return;
+			// }
+
+			if(confirm("Do you want to delete taks: "+task.Content)){
+				kinvey.deleteTask(taskId).then(function(data){
+					alert("Task deleted");
+				}, function(error){
+					alert("Unable to delete task");
+				})
+			}
+		};
+
+		kinvey.viewTask(taskId).then(function(data){
+			$scope.task = data.data;
+
+		});
 
 })
 .controller('editCtrl', function editCtrl($scope, kinvey) {
