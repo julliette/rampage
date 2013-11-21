@@ -21,17 +21,20 @@
 			<div class="control-group">
 			<label class="control-label">Status:</label>
 			<div class="controls">
-			<input type="text" ng-model="task.Status" placeholder="Task status" />
+			<input type="text" ng-model="task.Status" placeholder="Task status" required/>
 			</div>
 			</div>
 			</div>
 			<div class="modal-footer">
 			<button type="button" class="btn pull-left" ng-click="hide()">
-			<i class="icon-remove"></i>&nbsp;&nbsp;Cancel
+			<i class="icon-remove"></i>Cancel
 			</button>
 			<button type="submit" class="btn btn-primary" ng-click="addTask()">
 <!--</button>			<button type="submit" class="btn btn-primary" ng-click="modal.saved=true;saveTask(task);hide()">
--->			<i class="icon-ok icon-white"></i>&nbsp;&nbsp;Save Changes
+-->			<i class="icon-ok icon-white"></i>Save Changes
+			</button>
+			<button type="button" class="btn pull-right btn-danger" ng-click="deleteTask()">
+			<i class="icon-remove"></i>Delete
 			</button>
 		</div>
 	</form>

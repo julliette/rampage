@@ -3,18 +3,18 @@
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	<h3 >Create New Task</h3>
 	</div>
-	<form class="form-horizontal">
+	<form class="form-horizontal" name="taskForm">
 		<div class="modal-body">
 			<div class="control-group">
 			<label class="control-label">Content:</label>
 			<div class="controls">
-			<input type="text" ng-model="task.Content" placeholder="Task content" />
+			<input type="text" ng-model="task.Content" required placeholder="Task content" />
 			</div>
 			</div>
 			<div class="control-group">
 			<label class="control-label">Status:</label>
 			<div class="controls">
-			<input type="text" ng-model="task.Status" placeholder="Task status" />
+			<input type="text" ng-model="task.Status" required placeholder="Task status" />
 			</div>
 			</div>
 			</div>
