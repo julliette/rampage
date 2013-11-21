@@ -14,19 +14,33 @@ angular.module('rampage.controllers', ['rampage.services'])
 
 }).controller('MyCtrl2', 
 function($scope, kinvey, $location) {
-	kinvey.getTasks("/Task?query={}&sort={'CreatedDate': -1}").then(function(data){
-		$scope.tasks = data.data;
+	kinvey.getTasks().then(function(result){
+		$scope.tasks = result.data;
 	}, function(data) {
 		$scope.data = data || "Request failed";
 	});
 
 	$scope.addTask = function(task){
 		task.CreatedDate = new Date().getTime();
-		kinvey.addTask("/Task",task).then(function(data){
+		kinvey.addTask(task).then(function(result){
+			$scope.tasks.push(result.data);
 			alert("Success");
+		}, function(data){
+			alert("Fail");
+		});
+	};
+	$scope.updateTask = function(editTask){
+		kinvey.updateTask($scope.editTask).then(function(result){
+			$scope.activeTask.Status = result.data.Status;
+			$scope.activeTask.Content = result.data.Content;
+			//alert("Success");
 		}, function(data){
 			alert("Fail");
 		});
 	}
 
+	$scope.setActiveTask = function(task){
+		$scope.activeTask = task;
+		$scope.editTask = { Status: task.Status, Content : task.Content, _id : task._id };
+	}
 })

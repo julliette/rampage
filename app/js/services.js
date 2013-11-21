@@ -24,17 +24,24 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 		},
 		getTasks : function(params){
 			return $http({
-				url: SERVICE_URL + (params || ''),
+				url: SERVICE_URL + "/Task?query={}&sort={'CreatedDate': -1}",
 				method: 'GET',
 			})
 		},
-		addTask : function(params, data){
+		addTask : function(data){
 			return $http({
-				url: SERVICE_URL + (params || ''),
+				url: SERVICE_URL + "/Task",
 				method: 'POST',
 				data: data
 			})
 		},
+		updateTask : function(data){
+			return $http({
+				url : SERVICE_URL + "/Task/" + data["_id"],
+				method : 'PUT',
+				data : data
+			});
+		}
 	};
 	
 	return service;
