@@ -22,6 +22,8 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 				method: 'GET'
 			});
 		},
+		
+		//used on home page to get task
 		listTasks:function(){
 			return $http({
 				method: 'GET',
@@ -29,8 +31,8 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 			});
 		},
 		
+		//creates a new task
 		saveTask: function($scope){
-			
 			return $http({
 				url: SERVICE_URL + '/Task',
 				method: 'POST',
@@ -42,6 +44,7 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 			});
 		},
 		
+		//
 		editTask: function($scope){
 		
 			return $http({
