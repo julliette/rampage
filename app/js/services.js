@@ -41,7 +41,20 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 				method : 'PUT',
 				data : data
 			});
+		},
+		countTask : function(){
+			return $http({
+				url : SERVICE_URL + '/Task/_count',
+				method : 'GET'
+			})
+		},
+		getTasksPage : function(limit, skip){
+			return $http({
+				url: SERVICE_URL + "/Task?sort={'CreatedDate': -1}&limit=" + limit + "&skip=" + skip,
+				method: 'GET',
+			})
 		}
+
 	};
 	
 	return service;

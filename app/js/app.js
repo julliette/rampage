@@ -7,7 +7,7 @@ function($routeProvider) {
 		templateUrl : 'partials/partial1.html',
 		controller : 'MyCtrl1'
 	});
-	$routeProvider.when('/view2', {
+	$routeProvider.when('/view2/:pageNumber', {
 		templateUrl : 'partials/partial2.html',
 		controller : 'MyCtrl2'
 	});
@@ -19,6 +19,12 @@ function($routeProvider) {
 angular.module('rampage').factory('SERVICE_URL', [
 function() {
 		return 'http://baas.kinvey.com/appdata/kid_Te0iCbYsYf';
+	}
+]);
+
+angular.module('rampage').factory('GLOBAL_CONFIG', [
+function() {
+		return {itemsPerPage : 10}
 	}
 ]);
 
