@@ -6,6 +6,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 
 .controller('homeCtrl', function MyCtrl1($scope, kinvey) {
 
+
 	//Deals with pagination
 	$scope.filteredTodos =[]
 	, $scope.currentPage =1
@@ -70,6 +71,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 		$scope.hide = function(){
 			$location.path("#/home");
 		};
+
 		var taskId=$routeParams.task_Id;
 		
 		$scope.updateTask = function(task){		

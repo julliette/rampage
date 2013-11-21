@@ -40,7 +40,7 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 					"Content": content.Content,
 					"Status": content.Status,
 					"CreatedDate":new Date().getTime(),
-					"dueDate" : content.DueDate
+					"DueDate" : content.DueDate
 				}
 			});
 		},
@@ -54,8 +54,8 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 				data: {
 					"Content": taskData.Content,
 					"Status": taskData.Status,
-					"CreatedDate":taskData.CreateDate,
-					"dueDate" : taskData.DueDate
+					"CreatedDate":taskData.CreatedDate,
+					"DueDate" : taskData.DueDate
 				}
 			});
 		},
