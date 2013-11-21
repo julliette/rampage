@@ -53,11 +53,11 @@
 				Cancel
 			</button></td>
 			<td>
-				<button ng-show="title=='Add Task'" class="btn" ng-click="addtask()">
+				<button ng-disabled="popupBox.$invalid" ng-show="title=='Add Task'" class="btn" ng-click="addtask()">
 				Add
 				</button>
 				
-				<button ng-show="title=='Edit Task'" class="btn" ng-click="save()">
+				<button ng-disabled="popupBox.$invalid" ng-show="title=='Edit Task'" class="btn" ng-click="save()">
 				Save
 				</button>
 			
