@@ -5,18 +5,31 @@
   <title>My AngularJS App</title>
   <link rel="stylesheet" href="css/app.css"/>
   <link rel="stylesheet" href="css/bootstrap.min.css"/>
+
+  <style type="text/css">
+      .nav li a, .nav li{
+        display: inline-block;
+      }
+  </style>
 </head>
 <body>
-<div>	
-	<a class="brand" href="#">Rampage</a>
-	<a href="#/home" class="active">Home</a>
-	<a href="#/details">Details</a>
-	<a href="#/new">New</a>
-</div>
-<button type="button" class="btn btn-success" bs-modal="'partials/task-modal.html'"><i class="icon-user icon-white"></i>&nbsp;Create New Task</button>
-<div ng-view></div>
+<div>
+  <div class="container">
 
- 
+      <h1>Rampage</h1>
+    	<div class="navbar">
+        <div class="container">
+        <ul class="nav">    
+          	<li><a href="#/home" class="active">Home</a></li>
+          	<li><a href="#/new" class="btn btn-success"  bs-modal="'partials/new.html'">New</a></li>
+            
+        </ul>
+      </div>
+    </div>
+    <div ng-view></div>
+
+
+  </div> 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
   -->

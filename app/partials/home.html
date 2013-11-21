@@ -1,4 +1,4 @@
-<div class="">
+<div class="hero-unit">
 <section>
 	<table class="table">
 		<thead>
@@ -6,6 +6,7 @@
 				<th>Content</th>
 				<th>Created Date</th>
 				<th>Status</th>
+				<th>View/Edit</th>
 			</tr>
 		</thead>
 		
@@ -20,7 +21,7 @@
 				<td>{{task.Content}}</td>
 				<td>{{task.CreatedDate | date:'EEE MMMM, d yyyy'}}</td>
 				<td>{{task.Status}}</td>
-				<td><a ng-click="" class="label label-success">Edit</a></td>
+				<td><a ng-click="" href="#/details/{{task._id}}" class="label label-success">Edit/View</a></td>
 			</tr>
 		</tbody>
 	</table>

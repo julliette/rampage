@@ -7,7 +7,7 @@ function($routeProvider) {
 		templateUrl : 'partials/home.html',
 		controller : 'homeCtrl'
 	});
-	$routeProvider.when('/details', {
+	$routeProvider.when('/details/:task_Id', {
 		templateUrl : 'partials/details.html',
 		controller : 'detailsCtrl'
 	});
@@ -15,9 +15,10 @@ function($routeProvider) {
 		templateUrl : 'partials/new.html',
 		controller : 'newCtrl'
 	});
-	$routeProvider.otherwise({
-		redirectTo : '/home'
-	});
+	
+	// $routeProvider.otherwise({
+	// 	redirectTo : '/home'
+	// });
 }]);
 
 angular.module('rampage').factory('SERVICE_URL', [

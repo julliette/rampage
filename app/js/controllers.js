@@ -25,7 +25,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 	
 	//Creates a task buy using a button click
 	$scope.addTask = function(){
-		
+
 		kinvey.saveTask().then(function(data){
 			//If data was successful we will hide the div
 			
@@ -39,7 +39,11 @@ angular.module('rampage.controllers', ['rampage.services'])
 	};
 	
 })
+.controller('detailsCtrl', function detailsCtrl($scope, kinvey, $routeParams){
+	
 
+
+})
 .controller('editCtrl', function editCtrl($scope, kinvey) {
 	$scope.editTask = function(){
 		kinvey.editTask().then(function(data){
