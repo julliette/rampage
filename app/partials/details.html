@@ -15,7 +15,13 @@
 			<div class="control-group">
 				<label class="control-label">Created Date:</label>
 				<div class="controls">
-					{{task.CreatedDate | date:'yyyy-MM-dd HH:mm:ss Z'}}
+					{{task.CreatedDate | date:'yyyy-MM-dd HH:mm:ss'}}
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">Due Date:</label>
+				<div class="controls">
+					<input type="date" required ng-model="task.DueDate" required placeholder="Enter Due Date" />
 				</div>
 			</div>
 			<div class="control-group">

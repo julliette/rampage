@@ -74,7 +74,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 		
 		$scope.updateTask = function(task){		
 			kinvey.editTask(task).then(function(data){
-				
+
 			}, function(error){
 				alert("Oopps.. error: find google");
 			});
