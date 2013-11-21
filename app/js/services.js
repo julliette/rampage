@@ -15,7 +15,8 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
     $http.defaults.headers.post['Authorization'] = token;
 	$http.defaults.headers.common['X-Kinvey-API-Version'] = '3';
 	
-	var taskURL = 'https://baas.kinvey.com/appdata/kid_Te0iCbYsYf/Task';
+	var taskURL = 'https://baas.kinvey.com/appdata/kid_Te0iCbYsYf/Task',
+		taskEditURL = 'https://baas.kinvey.com/appdata/kid_Te0iCbYsYf/Task/:id';
 	
 	var service = {
 		ping : function() {
@@ -41,6 +42,14 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 				data:newTask
 				
 			});
+		},
+		editTask:function(task){
+			return $http({
+				url:taskEditURL.replace(':id',task._id),
+				method:'PUT',
+				data:task
+			});
+			
 		},
 
 		getTask:function(id){

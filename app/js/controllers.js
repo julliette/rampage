@@ -43,15 +43,19 @@ app.controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
 	    		modalElement.modal('show');
 	    	
 	    });
-	    
+	  };
 	    
 	    $scope.saveTask = function(){
-	    	$scope.newTask.CreatedDate = (new Date()).getTime();
+	    	
+	    	var bIsNew =!$scope.newTask._id; 
+	    	if(bIsNew){
+	    		//Create new
+	    		$scope.newTask.CreatedDate = (new Date()).getTime();
+			
 			
 			kinvey.addTask($scope.newTask).then(function(response)
 				{
-					//$scope.initList();
-					//$scope.cancel();
+					
 					$scope.tasks.push(response.data);
 					$scope.cleanUp();
 					
@@ -59,7 +63,33 @@ app.controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
 						
 					$log.error('Error: ' + error);
 				});
-			
+
+			}
+			else{
+				// Edit
+				
+				kinvey.editTask($scope.newTask).then(function(response)
+				{
+					
+					// Find the task index
+					for(var i = 0; i<$scope.tasks.length;i++){
+						if($scope.tasks[i]._id == response.data._id){
+							
+							$scope.tasks[i] = response.data;
+							break;
+						}
+						
+					}
+					
+					$scope.cleanUp();
+					
+				},function(error){
+						
+					$log.error('Error: ' + error);
+				});
+
+				
+			}			
 	    };
 	    
 	    $scope.cancelSaveTaskDialog= function(){
@@ -71,42 +101,10 @@ app.controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
 			$scope.newTask = {};	    	
 	    
 	    };
-	   /* $q.when(modalPromise).then(function (newTask) {
-	    	
-		    	newTask.CreatedDate = (new Date()).getTime();
-				kinvey.addTask($scope.newTask).then(function(response)
-				{
-					$scope.initList();
-					$scope.cancel();
-					
-				},function(error){
-						
-					$log.error('Error: ' + error);
-				});
-				
-	    }, function () {
-	      $log.info('Modal dismissed at: ' + new Date());
-	    });
-		
-		*/
-	/*	var ModalInstanceCtrl = function ($scope, $modalInstance, item) {
-
-		  $scope.item = item;
-		  
-		
-		  $scope.ok = function () {
-		    $modalInstance.close($scope.item);
-		  };
-		
-		  $scope.cancel = function () {
-		    $modalInstance.dismiss('cancel');
-		 };
-};*/
-	
-	};
+	   
 
 	
-	$scope.editTask = function(id){
+	$scope.editTask = function(task){
 		
 		
 		 var modalPromise= $modal({
@@ -118,33 +116,11 @@ app.controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
 	    });
 	
 	    $q.when(modalPromise).then(function (modalElement){
-			kinvey.getTask(id).then(function(response)
-					{
-						$scope.newTask = response.data;						
-					},function(error){
-							
-						$log.error('Error: ' + error);
-					});
-	    	
-	    	modalElement.modal('show');
-	    	
-	    });
-	    
-	    
-	    $scope.saveTask = function(){
-	    	$scope.newTask.CreatedDate = (new Date()).getTime();
 			
-			kinvey.addTask($scope.newTask).then(function(response)
-				{
-					//$scope.initList();
-					//$scope.cancel();
-					$scope.tasks.push(response.data);
-					$scope.cleanUp();
-					
-				},function(error){
-						
-					$log.error('Error: ' + error);
-				});
+					$scope.newTask = $.extend(true, {}, task);	 		
+					modalElement.modal('show');
+					});
+	   
 			
 	    };
 	    
@@ -157,6 +133,6 @@ app.controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
 			$scope.newTask = {};	    	
 	    
 	    };	
-	};
+	
 	
 });
