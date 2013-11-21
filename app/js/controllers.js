@@ -6,6 +6,18 @@ angular.module('rampage.controllers', ['rampage.services'])
 
 .controller('homeCtrl', function MyCtrl1($scope, kinvey) {
 
+	//Deals with pagination
+	$scope.filteredTodos =[]
+	, $scope.currentPage =1
+	, $scope.numPerPage  = 10
+	, $scope.maxSize 	 =5;
+
+	
+	$scope.numPages = function () {
+    	return Math.ceil($scope.tasks.length / $scope.numPerPage);
+  	};
+
+
 	kinvey.ping().then(function(data) {
 		$scope.data = data.data;
 		$scope.status = data.status;
@@ -16,9 +28,21 @@ angular.module('rampage.controllers', ['rampage.services'])
 	kinvey.listTasks().then(function(data){
 		$scope.tasks = data.data;
 		$scope.status = data.status;
+
+
+
 	}, function(data) {
 		$scope.tasks = data || "Request failed";
 	});
+
+
+
+
+
+
+
+
+
 })
 
 .controller('newCtrl', function newCtrl($scope, kinvey,$location) {
@@ -28,9 +52,11 @@ angular.module('rampage.controllers', ['rampage.services'])
 		};
 	
 	//Creates a task buy using a button click
+
 	$scope.addTask = function(task){
-		kinvey.saveTask(task.Content, task.Status).then(function(){
+		kinvey.saveTask(task).then(function(){
 			//If data was successful we will hide the div
+
 		}, function(data) {
 			//if not show an error message
 			alert('Unable to create new task');	

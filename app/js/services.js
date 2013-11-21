@@ -32,14 +32,15 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 		},
 		
 		//creates a new task
-		saveTask: function(content, status){
+		saveTask: function(content){
 			return $http({
 				url: SERVICE_URL + '/Task',
 				method: 'POST',
 				data: {
-					"Content": content,
-					"Status": status,
-					"CreatedDate":new Date().getTime()
+					"Content": content.Content,
+					"Status": content.Status,
+					"CreatedDate":new Date().getTime(),
+					"dueDate" : content.DueDate
 				}
 			});
 		},
@@ -53,7 +54,8 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 				data: {
 					"Content": taskData.Content,
 					"Status": taskData.Status,
-					"CreatedDate":taskData.CreateDate
+					"CreatedDate":taskData.CreateDate,
+					"dueDate" : taskData.DueDate
 				}
 			});
 		},
