@@ -25,6 +25,7 @@ function() {
 		$scope.data = data || "Request failed";
 	});
 	
+	
 	$scope.add = function() {
     	$('#popup').removeClass('hidden');
     	$('#popup').addClass('overlay');

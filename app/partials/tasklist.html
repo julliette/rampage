@@ -6,12 +6,13 @@
 	No Tasks
 </div><br>
 <table class='table-striped' ng-hide="tasks.length==0">
-	<tr>
+	<thead>
 		<th>Content</th>
 		<th>Status</th>
 		<th>Created Date</th>
 		<th>Edit</th>
-	</tr>
+	</thead>
+	<tbody>
 	<tr ng-repeat="task in tasks|orderBy:'CreatedDate'">
 		<td>{{task.Content}}</td>
 		<td>{{task.Status}}</td>
@@ -23,7 +24,12 @@
 		</td>
 		<td ng-hide='true'>{{task._id}}</td>
 	</tr>
+	</tbody>
 </table>
+<div data-pagination="" data-num-pages="numPages()" 
+      data-current-page="currentPage" data-max-size="maxSize"  
+      data-boundary-links="true"></div>
+
 
 <div class="hidden" id='popup'>
 	<form name="popupBox">
