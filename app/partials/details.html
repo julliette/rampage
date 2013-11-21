@@ -29,11 +29,11 @@
 			<button type="button" class="btn pull-left" ng-click="hide()">
 			<i class="icon-remove"></i>Cancel
 			</button>
-			<button type="submit" class="btn btn-primary" ng-click="updateTask(task)">
+			<button type="submit" class="btn btn-primary" ng-click="updateTask(task);hide()">
 <!--</button>			<button type="submit" class="btn btn-primary" ng-click="modal.saved=true;saveTask(task);hide()">
 -->			<i class="icon-ok icon-white"></i>Save Changes
 			</button>
-			<button type="button" class="btn pull-right btn-danger" ng-click="deleteTask(task)">
+			<button type="button" class="btn pull-right btn-danger" ng-click="deleteTask(task);hide()">
 			<i class="icon-remove"></i>Delete
 			</button>
 		</div>
