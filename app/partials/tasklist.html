@@ -4,8 +4,8 @@
 <br>
 <div ng-show="tasks.length==0">
 	No Tasks
-</div>
-<table ng-hide="tasks.length==0">
+</div><br>
+<table class='table-striped' ng-hide="tasks.length==0">
 	<tr>
 		<th>Content</th>
 		<th>Status</th>
@@ -35,6 +35,8 @@
 			<td>Content</td>
 			<td><textarea required ng-model="content" placeholder="Content"></textarea></td>
 			<td>{{popupBox.input.$valid}}</td>
+			<td ng-hide='true'><input type='hidden' ng-model="_id" value=''/></td>
+			<td ng-hide='true'><input type='hidden' ng-model="createddate" value=''/></td>
 		</tr>
 		<tr>
 			<td>Status</td>

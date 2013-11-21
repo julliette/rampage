@@ -38,6 +38,8 @@ function() {
     	$scope.title="Edit Task";
     	$scope.content = task.Content;
     	$scope.status = task.Status;
+    	$scope._id = task._id;
+    	$scope.createddate = task.CreatedDate;
  	};
  	
  	$scope.cancel = function() {
@@ -47,22 +49,20 @@ function() {
  	};
  	
  	$scope.save = function() {
+ 		console.log($scope);
     	kinvey.edittask($scope).then(function() {
 			alert("Task Saved");
-			kinvey.task().then(function(data) {
-				$scope.tasks = data.data;
-			});
     		$('#popup').removeClass('overlay');
     		$('#popup').addClass('hidden');
 		});
+		$scope.refreshList();
  	};
  	
  	$scope.addtask = function() {
+ 		
 		kinvey.createtask($scope).then(function() {
 			alert("Task Added");
-			kinvey.task().then(function(data) {
-				$scope.tasks = data.data;
-			});
+			$scope.refreshList();
     		$('#popup').removeClass('overlay');
     		$('#popup').addClass('hidden');
 		});
@@ -70,6 +70,12 @@ function() {
  	
  	$scope.clearpopup= function(){
     	$scope.status = $scope.content = "";
+ 	};
+ 	
+ 	$scope.refreshList=function(){
+ 		kinvey.task().then(function(data) {
+			$scope.tasks = data.data;
+		});
  	};
 })
 

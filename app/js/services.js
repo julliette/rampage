@@ -41,14 +41,13 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 		},
 		edittask : function($scope) {
 			return $http({
-				url: SERVICE_URL+"/Task",
+				url: SERVICE_URL+"/Task/"+$scope._id,
 				method: 'PUT',
-				params: {
-					'_id': $scope._id,
+				data: {
 					'Content':$scope.content,
 					'Status' :$scope.status,
-					'CreatedDate': new Date()
-					}
+					'CreatedDate': $scope.createddate
+				}
 			});
 		}
 	};
