@@ -6,14 +6,24 @@
 	<form name="myForm" class="form-horizontal">
 		
 		<div class="modal-body">
-			<label>Task:</label> <input type="text" ng-model="newTask.Content" />
+			<label>Task:</label> <input type="text" ng-model="newTask.Content" /><br/>
 			<!--<span ng-show="myForm.input.$error.required">*</span>-->
 			<label>Status:</label>
 			<select ng-model="newTask.Status">
 		  		<option value="Incomplete">Incomplete</option>
 				<option value="Complete">Complete</option>
-			</select>
+			</select><br/>
+			<br/>
+			<div class="control-group input-append">
+			<label class="">Due:</label> <input class="" type="date" ng-model="newTask.dueDatePart" maxlength="10" data-date-format="mm/dd/yyyy" /> 
+		
+</div>
+<div class="control-group input-append">					
+					<input type="text" ng-model="newTask.dueTimePart" class="input-small" bs-timepicker>
+  <button type="button" class="btn" data-toggle="timepicker"><i class="icon-time"></i></button>
 			
+		</div>
+			<br/>
 			<button ng-click="saveTask(); hide()"  >Add Task</button>
 			
 			<button ng-click="cancelSaveTaskDialog(); hide()">Cancel</button>

@@ -23,6 +23,8 @@ app.controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
 			$scope.tasks = [];	
 			$log.error('Error: ' + error);
 		});
+		
+		$scope.newTask = new Task();
 		};
 		
 	$scope.initList();	
@@ -53,7 +55,7 @@ app.controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
 	    		$scope.newTask.CreatedDate = (new Date()).getTime();
 			
 			
-			kinvey.addTask($scope.newTask).then(function(response)
+			kinvey.addTask($scope.newTask.Dehydrate()).then(function(response)
 				{
 					
 					$scope.tasks.push(response.data);
@@ -98,7 +100,7 @@ app.controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
 	    
 	    $scope.cleanUp = function(){
 	    	
-			$scope.newTask = {};	    	
+			$scope.newTask = new Task();//{};	    	
 	    
 	    };
 	   
@@ -117,7 +119,7 @@ app.controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
 	
 	    $q.when(modalPromise).then(function (modalElement){
 			
-					$scope.newTask = $.extend(true, {}, task);	 		
+					$scope.newTask = new Task(task);//$.extend(true, {}, task);	 		
 					modalElement.modal('show');
 					});
 	   
@@ -128,11 +130,6 @@ app.controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
 	    	$scope.cleanUp();
 	    };
 	    
-	    $scope.cleanUp = function(){
-	    	
-			$scope.newTask = {};	    	
-	    
-	    };	
-	
+	   
 	
 });
