@@ -76,7 +76,7 @@ app.controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
 			else{
 				// Edit
 				
-				kinvey.editTask($scope.newTask).then(function(response)
+				kinvey.editTask($scope.newTask.Dehydrate()).then(function(response)
 				{
 					
 					// Find the task index

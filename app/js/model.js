@@ -67,7 +67,9 @@ function Task(seed){
 		
 		return {
 			_id:this._id,
-			DueDate:(this.dueDatePart||this.dueTimePart)? new Date(this.dueDatePart + ' ' + this.dueDateTime):null,
+			DueDate:(this.dueDatePart||this.dueTimePart)? new Date(this.dueDatePart + ' ' + this.dueTimePart):null,
+			Content:this.Content,
+			Owner: this.Owner,
 			CreatedDate:this.CreatedDate,
 			Status:this.Status
 			
