@@ -21,7 +21,7 @@
 			<div class="control-group">
 				<label class="control-label">Due Date:</label>
 				<div class="controls">
-					<input type="date" required ng-model="task.DueDate" required placeholder="Enter Due Date" />
+					<input type="date" ng-model="task.DueDate" required placeholder="Enter Due Date" />
 				</div>
 			</div>
 			<div class="control-group">
@@ -30,7 +30,18 @@
 			<input type="text" ng-model="task.Status" placeholder="Task status" required/>
 			</div>
 			</div>
+			<div class="control-group">
+				<label class="control-label">Owner:</label>
+
+				<div class="controls">
+					<select ng-model="selectedValue" ng-options="user for user in Users">
+						<option value="">Select</option>
+					</select>
+				</div>
+			</div>	
+
 			</div>
+
 			<div class="modal-footer">
 			<button type="button" class="btn pull-left" ng-click="hide()">
 			<i class="icon-remove"></i>Cancel

@@ -47,16 +47,48 @@ angular.module('rampage.controllers', ['rampage.services'])
 })
 
 .controller('newCtrl', function newCtrl($scope, kinvey,$location) {
-	
+	$scope.Users = kinvey.getUsers();
+	$scope.selectedValue= null;
 	$scope.hide = function(){
 			$location.path("#/home");
 		};
 	
-	//Creates a task buy using a button click
+	function isDateValid(TaskDueDate){
+	
+			if(!TaskDueDate){
+				//Return true if it is null or undefined
+				//One of the criteria is that it can be null.. in that way we want to return true.
+				return true;
+			}
+			var today = new Date();
+			var formattedDate = today.getTime();
 
+			var date = new Date(TaskDueDate);
+			date = date.getTime();
+
+			if(date < formattedDate){
+				return false;	
+			}else{
+			
+				return true;
+			}
+		};
+
+
+	//Creates a task buy using a button click
 	$scope.addTask = function(task){
+			
+			if(!task.DueDate){
+
+			}else if(!isDateValid(task.DueDate)){
+			//if the date is less than today then
+				alert("Unable to create task as due date is invalid.");
+				return false;
+			}
+
+		//Add selectedValue to the task variable
+		task.User= $scope.selectedValue;
 		kinvey.saveTask(task).then(function(){
-			//If data was successful we will hide the div
 
 		}, function(data) {
 			//if not show an error message
@@ -67,14 +99,53 @@ angular.module('rampage.controllers', ['rampage.services'])
 	
 })
 .controller('detailsCtrl', function detailsCtrl($scope, kinvey, $routeParams, $location){
-	
+		$scope.Users = kinvey.getUsers();
+		$scope.selectedValue= null;
 		$scope.hide = function(){
 			$location.path("#/home");
 		};
+		
 
 		var taskId=$routeParams.task_Id;
 		
-		$scope.updateTask = function(task){		
+		 function isDateValid(TaskDueDate){
+	
+			if(!TaskDueDate){
+				//Return true if it is null or undefined
+				//One of the criteria is that it can be null.. in that way we want to return true.
+				return true;
+			}
+
+			$scope.selectedValue = TaskDueDate.User;
+
+			var today = new Date();
+			var formattedDate = today.getTime();
+
+			var date = new Date(TaskDueDate);
+			date = date.getTime();
+
+			if(date < formattedDate){
+				
+				return false;
+			
+			}else{
+			
+				return true;
+			}
+			
+
+
+
+		};
+
+		$scope.updateTask = function(task){	
+			console.log(task);
+			//if the date is less than today then
+			if(!isDateValid(task.DueDate)){
+				alert("Invalid due date. Select a date not in the past");
+				return false;
+			}
+
 			kinvey.editTask(task).then(function(data){
 
 			}, function(error){
@@ -95,7 +166,8 @@ angular.module('rampage.controllers', ['rampage.services'])
 
 		kinvey.viewTask(taskId).then(function(data){
 			$scope.task = data.data;
-
+			$scope.selectedValue = $scope.task.User;
+			
 		});
 
 });
