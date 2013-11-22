@@ -34,7 +34,7 @@
 				<label class="control-label">Owner:</label>
 
 				<div class="controls">
-					<select ng-model="selectedValue" ng-options="user for user in Users">
+					<select ng-model="selectedValue" ng-options="user.FirstName+' '+user.LastName for user in Users">
 						<option value="">Select</option>
 					</select>
 				</div>

@@ -56,7 +56,8 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 					"Content": taskData.Content,
 					"Status": taskData.Status,
 					"CreatedDate":taskData.CreatedDate,
-					"DueDate" : taskData.DueDate
+					"DueDate" : taskData.DueDate,
+					"User" : taskData.User
 				}
 			});
 		},
@@ -77,7 +78,10 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 
 		//For users
 		getUsers: function(){
-			return ["Solomon","Alex","Force","The King"];
+			return $http({
+				url: SERVICE_URL+'/TeamMember',
+				method: 'GET'
+			});
 		}
 	};
 	

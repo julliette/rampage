@@ -47,7 +47,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 })
 
 .controller('newCtrl', function newCtrl($scope, kinvey,$location) {
-	$scope.Users = kinvey.getUsers();
+	$scope.Users = null;
 	$scope.selectedValue= null;
 	$scope.hide = function(){
 			$location.path("#/home");
@@ -74,6 +74,17 @@ angular.module('rampage.controllers', ['rampage.services'])
 			}
 		};
 
+	function getUsers(){
+		kinvey.getUsers().then(function(data){
+			$scope.Users= data.data;
+
+		},function(error){
+
+
+		});	
+	}
+
+	getUsers();
 
 	//Creates a task buy using a button click
 	$scope.addTask = function(task){
@@ -99,7 +110,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 	
 })
 .controller('detailsCtrl', function detailsCtrl($scope, kinvey, $routeParams, $location){
-		$scope.Users = kinvey.getUsers();
+		$scope.Users = null;
 		$scope.selectedValue= null;
 		$scope.hide = function(){
 			$location.path("#/home");
@@ -132,19 +143,27 @@ angular.module('rampage.controllers', ['rampage.services'])
 			
 				return true;
 			}
-			
-
-
-
 		};
 
+		function getUsers(){
+			kinvey.getUsers().then(function(data){
+				$scope.Users= data.data;
+			},function(error){
+
+
+			});	
+		}
+
+		getUsers();
+
+
 		$scope.updateTask = function(task){	
-			console.log(task);
 			//if the date is less than today then
 			if(!isDateValid(task.DueDate)){
 				alert("Invalid due date. Select a date not in the past");
 				return false;
 			}
+			task.User = $scope.selectedValue;
 
 			kinvey.editTask(task).then(function(data){
 
@@ -167,6 +186,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 		kinvey.viewTask(taskId).then(function(data){
 			$scope.task = data.data;
 			$scope.selectedValue = $scope.task.User;
+			console.log(data.data);
 			
 		});
 
