@@ -7,6 +7,8 @@ function Task(seed){
 		this.Content = seed.Content;
 		this.CreatedDate = seed.CreatedDate;
 		this.Status = seed.Status;
+		this.User = seed.User;
+		this.Owner = seed.Owner;
 		
 		if(seed.dueDatePart || seed.dueTimePart){
 			this.dueDatePart = seed.dueDatePart;

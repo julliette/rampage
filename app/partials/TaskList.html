@@ -4,6 +4,7 @@
 		<th>Task</th>
 		<th>Status</th>
 		<th>Created</th>
+		<th>Owner</th>
 		<th>Edit</th>
 	</thead>
 	<tbody>
@@ -11,6 +12,7 @@
 			<td>{{task.Content}}</td>
 			<td>{{task.Status}}</td>
 			<td>{{task.CreatedDate | date:'medium'}}</td>
+			<td>{{task.Owner}}</td>
 			<td><button ng-click="editTask(task)">Edit</button></td>
 		</tr>
 		<tr ng-hide="tasks.length">

@@ -12,7 +12,18 @@
 			<select ng-model="newTask.Status">
 		  		<option value="Incomplete">Incomplete</option>
 				<option value="Complete">Complete</option>
-			</select><br/>
+
+			</select>
+
+			<label>Owner:</label>
+			<select ng-model="newTask.Owner" required>				
+				<option ng-selected="newTask.Owner == (teamMember.FirstName + ' ' + teamMember.LastName)" 
+				ng-repeat="teamMember in teamMembers | orderBy:'FirstName'" 
+				value="{{teamMember.FirstName}} {{teamMember.LastName}}">
+					{{teamMember.FirstName}} {{teamMember.LastName}}</option>
+			</select>
+			<!--<span ng-show="myForm.input.$error.required">*</span>-->
+<br/>
 			<br/>
 			<div class="control-group input-append">
 			<label class="">Due:</label> <input class="" type="date" ng-model="newTask.dueDatePart" maxlength="10" data-date-format="mm/dd/yyyy" /> 

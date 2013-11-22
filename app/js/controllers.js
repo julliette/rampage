@@ -15,6 +15,12 @@ app.controller('MyCtrl1', function MyCtrl1($scope, kinvey) {
 
 }).controller('TaskListCtrl', function TaskListCtrl($scope, $log, $modal, $q,kinvey) {
 
+	kinvey.allTeamMembers().then(function(response){
+		$scope.teamMembers = response.data;
+	}, function(error){
+		$scope.teamMembers = [];	
+		$log.error('allTeamMembers Error: ' + error);
+	});
 
 	$scope.initList = function(){
 		kinvey.allTasks().then(function(response){
