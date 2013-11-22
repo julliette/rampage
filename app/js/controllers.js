@@ -8,15 +8,56 @@ angular.module('rampage.controllers', ['rampage.services'])
 
 
 	//Deals with pagination
-	$scope.filteredTodos =[]
-	, $scope.currentPage =1
-	, $scope.numPerPage  = 10
-	, $scope.maxSize 	 =5;
-
+	$scope.filteredTodos =[];
+	$scope.currentPage =0;
+	$scope.itemsPerPage  = 10;
 	
-	$scope.numPages = function () {
-    	return Math.ceil($scope.tasks.length / $scope.numPerPage);
-  	};
+	
+	//Used to calculare the rage of the number of pages
+	$scope.range = function(start, end){
+		var ret =[];
+		if(!end){
+			end = start;
+			start =0;
+		}
+		for(var i = start; i < end; i++){
+			ret.push(i);
+		}
+		return ret;
+	}
+
+	//Group pages
+	//this is done to ensure that not all page links are sown on the page all at once
+	$scope.groupToPages= function(){
+		$scope.pagedItems =[]
+
+		for(var i=0; i < $scope.tasks.length; i++){
+			if(i % $scope.itemsPerPage === 0){
+				$scope.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [ $scope.tasks[i] ];
+			}else {
+				$scope.pagedItems[Math.floor(i / $scope.itemsPerPage)].push($scope.tasks[i]);
+			}
+		}
+	};
+
+	//Clicking the previous button
+	$scope.prevPage = function(){
+		if($scope.currentPage > 0){
+			$scope.currentPage --;
+		}
+	}
+
+	// Cliking the next button
+	$scope.nextPage = function(){
+		if($scope.currentPage < $scope.pagedItems.length -1){
+			$scope.currentPage++;
+		}
+	}
+
+	// Clicking on a particular page link
+	$scope.setPage = function(){
+		$scope.currentPage = this.item;
+	}
 
 
 	kinvey.ping().then(function(data) {
@@ -37,6 +78,9 @@ angular.module('rampage.controllers', ['rampage.services'])
 	kinvey.listTasks().then(function(data){
 		$scope.tasks = data.data;
 		$scope.status = data.status;
+
+		//Set page groups
+		$scope.groupToPages();
 
 	}, function(data) {
 		$scope.tasks = data || "Request failed";
@@ -163,7 +207,6 @@ angular.module('rampage.controllers', ['rampage.services'])
 				return false;
 			}
 			task.User = $scope.selectedValue;
-
 			kinvey.editTask(task).then(function(data){
 
 			}, function(error){
@@ -185,6 +228,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 		kinvey.viewTask(taskId).then(function(data){
 			$scope.task = data.data;
 			$scope.selectedValue = $scope.task.User;
+
 		});
 
 });

@@ -1,10 +1,10 @@
 <div class="hero-unit">
 <section>
-	
+	<div>
 	</div>
 	<hr/>
 
-	<hr/>
+	
 	
 	
 	<!-- <div class="control-group">
@@ -19,9 +19,12 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<select ng-model="selectedValue" ng-options="user.FirstName+' '+user.LastName for user in Users">
-					<option value="">Choose Name</option>
-				</select>
+				<td>Search For</td>
+				<td><select ng-model="selectedValue" ng-options="user.FirstName+' '+user.LastName for user in Users">
+						<option value="">Choose Name</option>
+					</select>
+				</td>
+
 			</tr>
 			<tr>
 				<th>Content</th>
@@ -50,7 +53,7 @@
 			</tr>
 		</tbody>
 		<tfoot>
-			<td colspan="6">
+			<!--<td colspan="6">
 				<div class="pagination ">
 					<ul>
 						<li ng-class="{disabled: currentPage ==0}">
@@ -65,9 +68,12 @@
 						</li>
 					</ul>
 				</div>
-			</td>
+			</td> -->
 		</tfoot>
 	</table>
+
+	<hr/>
+	<h2>All Task</h2>
 	
 	
 	<table class="table">
@@ -89,7 +95,7 @@
 				</td>
 			</tr>
 			
-			<tr ng-repeat="task in tasks | orderBy: 'CreatedDate'">
+			<tr ng-repeat="task in pagedItems[currentPage] | orderBy: 'CreatedDate'">
 				<td>{{task.Content}}</td>
 				<td>{{task.User.FirstName}} {{task.User.LastName}}</td>
 				<td>{{task.CreatedDate | date:'EEE MMMM, d yyyy'}}</td>
@@ -100,19 +106,18 @@
 		</tbody>
 		<tfoot>
 			<td colspan="6">
-				<div class="pagination ">
+				<div class="pagination pull-left">
 					<ul>
 						<li ng-class="{disabled: currentPage ==0}">
 							<a href ng-click="prevPage()">&lt;&lt; Prev</a>
 						</li>
-						
-						<li ng-repeat="item in range(tasks.length)"
+						<li ng-repeat="item in range(pagedItems.length)"
 							ng-class="{active: item == currentPage}"
 							ng-click="setPage()"
 						>
 							<a href ng-bind="item + 1">1</a>
 						</li>
-						<li>
+						<li >
 							<a href ng-click="nextPage()">Next &gt;&gt;</a>
 						</li>
 
@@ -129,7 +134,8 @@
 </section>
 <br />
 <section>
-	<h1>Ping status</h1>
+	<h1>Creators</h1>
+	<p class="btn btn-success">Chickoree & Solomon</p>
 	<p>Data: {{data}}</p>
 	<p>Status: {{status}}</p>
 </section>
