@@ -15,13 +15,37 @@ angular.module('rampage.directives', []).
   	  		templateUrl : 'partials/pager.html',
   	  		scope: {
         		pageNumber: '=',
-        		pageCount: '='
+        		pageCount: '=',
+            pagerName: '=',
+            itemCount: '=',
+            itemsPerPage: '='
       		}
-      	// 	,
-  	  		// link : function(scope, elm, attrs) {
-     		// 	angular.element(elm).html("<h1>test</h1>");
-     		// 	console.log(scope.pageNumber);
-  	  		// }
+          ,
+  	  		link : function(scope, elm, attrs) {
+            scope.min = Math.min;
+
+            scope.genlink = function(page){
+              var linkparam = { name : scope.pagerName, value : page};
+              return scope.$parent.pagelink(linkparam);
+            }
+  	  		}
   	  	};
 
-  });
+  }).directive('datepicker', function() {
+    return {
+        restrict: 'A',
+        require : 'ngModel',
+        link : function (scope, element, attrs, ngModelCtrl) {
+            $(function(){
+                element.datepicker({
+                    dateFormat:'mm/dd/yy',
+                    onSelect:function (date) {
+                        scope.$apply(function () {
+                            ngModelCtrl.$setViewValue(date);
+                        });
+                    }
+                });
+            });
+        }
+    }
+});;

@@ -13,29 +13,22 @@ angular.module('rampage.controllers', ['rampage.services'])
 	});
 
 }).controller('MyCtrl2', 
-function($scope, kinvey, $location, GLOBAL_CONFIG, $route) {
-	$scope.count = 0;
-
-	$scope.currentPage = $route.current.params.pageNumber || 1;
+function($scope, kinvey, $location, GLOBAL_CONFIG, $route, taskCount) {
 	$scope.pageNumber = $route.current.params.pageNumber - 0;
-	$scope.pageCount = 0;
-	//$scope.route = $route;
-	//TEST
-	console.log(GLOBAL_CONFIG);
-	console.log($route.current);
+	console.log("param1 :", $route.current.params.param1);
+	$scope.count = taskCount.data.count;
+	$scope.itemsPerPage = GLOBAL_CONFIG.itemsPerPage;
+	$scope.pageCount = Math.ceil($scope.count/GLOBAL_CONFIG.itemsPerPage);
 
-	kinvey.countTask().then(function(result){
-		$scope.count = result.data.count;
-		$scope.pageCount = Math.ceil($scope.count/GLOBAL_CONFIG.itemsPerPage);
-	}, function(error){
-		alert(error);
-	}).then(function(){
-		kinvey.getTasksPage(GLOBAL_CONFIG.itemsPerPage, ($scope.currentPage - 1) * GLOBAL_CONFIG.itemsPerPage)
-			.then(function(result){
-					$scope.tasks = result.data;
-			}, function(data) {
-				$scope.data = data || "Request failed";
-		});
+	$scope.pagelink = function(x){
+		return '#/view2/' + $scope.pageNumber + '?' + x.name + '=' + x.value;
+	};
+	
+	kinvey.getTasksPage(GLOBAL_CONFIG.itemsPerPage, ($scope.currentPage - 1) * GLOBAL_CONFIG.itemsPerPage)
+	.then(function(result){
+		$scope.tasks = result.data;
+	}, function(data) {
+		$scope.data = data || "Request failed";
 	});
 
 	

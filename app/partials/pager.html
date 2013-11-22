@@ -1,12 +1,27 @@
 <ul class="pagination">
-  <li><a href="#/view2/1" ng-show="pageNumber > 1">&laquo;</a></li>
+  <li ng-class="{disabled : pageNumber == 1}">
+  	<a href="#/view2/1" ng-show="pageNumber > 1">&laquo;</a>
+  	<span ng-hide="pageNumber > 1">&laquo;</span>
+  </li>
+  <li ng-class="{disabled : pageNumber == 1}">
+  	<a href="#/view2/{{pageNumber-1}}" ng-show="pageNumber > 1">&lsaquo;</a>
+  	<span ng-hide="pageNumber > 1">&lsaquo;</span>
+  </li>
   <li><a href="#/view2/{{pageNumber-3}}" ng-show="pageNumber>3">{{pageNumber-3}}</a></li>
   <li><a href="#/view2/{{pageNumber-2}}" ng-show="pageNumber>2">{{pageNumber-2}}</a></li>
   <li><a href="#/view2/{{pageNumber-1}}" ng-show="pageNumber>1">{{pageNumber-1}}</a></li>
-  <li><a href="#/view2/{{pageNumber}}">{{pageNumber}} of {{pageCount}}</a></li>
+  <li class="active"><span >{{pageNumber}}</span></li>
   <li><a href="#/view2/{{pageNumber+1}}"  ng-show="pageCount>(pageNumber+1)">{{pageNumber+1}}</a></li>
   <li><a href="#/view2/{{pageNumber+2}}"  ng-show="pageCount>(pageNumber+2)">{{pageNumber+2}}</a></li>
   <li><a href="#/view2/{{pageNumber+3}}"  ng-show="pageCount>(pageNumber+3)">{{pageNumber+3}}</a></li>
-  <li><a href="#/view2/{{pageCount}}" ng-show="pageCount > pageNumber">&raquo;</a></li>
+  <li ng-class="{disabled : pageNumber >= pageCount }">
+  	<a href="#/view2/{{pageNumber + 1}}" ng-show="pageCount > pageNumber">&rsaquo;</a>
+  	<span ng-hide="pageCount > pageNumber">&rsaquo;</span>
+  </li>
+  <li ng-class="{disabled : pageNumber >= pageCount }">
+  	<a href="#/view2/{{pageCount}}" ng-show="pageCount > pageNumber">&raquo;</a>
+  	<span ng-hide="pageCount > pageNumber">&raquo;</span>
+  </li>
 </ul>
+<p>Showing results {{itemsPerPage * (pageNumber - 1) + 1}} - {{ min( itemsPerPage * pageNumber, itemCount) }} of {{itemCount}}</p>
 <!-- refactor with filter because we are fancy!-->

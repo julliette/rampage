@@ -1,8 +1,10 @@
 <div class="container">
-	<div><pager page-number="pageNumber" page-count="pageCount"/></div>
+	<div>
+		<pager page-number="pageNumber" page-count="pageCount" pager-name="'param1'" item-count="count" items-per-page="itemsPerPage"/>
+	</div>
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Task</button>
 	<br/>
-	<table class="table" ng-show="tasks.length > 0">
+	<table class="table table-striped" ng-show="tasks.length > 0">
 	  	<tr>
 	  		<th>Created Date</th>
 	  		<th>Content</th>
@@ -10,7 +12,7 @@
 	  		<th>Edit</th>
 	  	</tr>
 	  	<tr ng-repeat="task in tasks">
-	  		<td>{{task.CreatedDate | date:yyyy}}</td>
+	  		<td>{{task.CreatedDate | date:'MM-dd-yyyy'}}</td>
 	  		<td>{{task.Content}}</td>
 	  		<td>{{task.Status}}</td>
 	  		<td><button type="button" class="btn btn-primary" data-toggle="modal" ng-click="setActiveTask(task)" data-target="#editTaskModal">Edit Task</button></td>
@@ -32,16 +34,20 @@
 
 		  <textarea class="form-control" ng-model="task.Content" required rows="3"></textarea>
 		  <span class="error" ng-show="task.Content.$error.required">Required!</span><br>
+
+		  <input type="text" ng-model="task.DueDate" class="form-control" placeholder="Due Date" datepicker />
+		  <span class="error" ng-show="task.DueDate.$error.required">Required!</span><br>
+
 		  <select class="form-control" ng-model="task.Status" required>
-		    <option value="">--Select Status--</option>
+		    <option value="">-- Select Status --</option>
 		    <option>Complete</option>
 		    <option selected>Incomplete</option>
 		  </select>
 		  <span class="error" ng-show="task.Content.$error.required">Required!</span><br>
-		        <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        <button type="submit" class="btn btn-primary" >Save</button>
-			      </div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="submit" class="btn btn-primary" >Save</button>
+		  </div>
 		</form>
       </div>
 
@@ -60,11 +66,16 @@
 		<form name="add" ng-submit="updateTask(editTask)">
 		  <textarea class="form-control" ng-model="editTask.Content" required rows="3"></textarea>
 		  <span class="error" ng-show="editTask.Content.$error.required">Required!</span><br>
+
+		  <input type="text" ng-model="editTask.DueDate" class="form-control" placeholder="Due Date" datepicker />
+		  <span class="error" ng-show="editTask.DueDate.$error.required">Required!</span><br>
+
 		  <select class="form-control" ng-model="editTask.Status" required>
-		    <option value="">--Select Status--</option>
+		    <option value="">-- Select Status --</option>
 		    <option>Complete</option>
 		    <option selected>Incomplete</option>
 		  </select>
+		  <input type="text" ng-model="task.DueDate" datepicker />
 		  <span class="error" ng-show="editTask.Content.$error.required">Required!</span><br>
 		        <div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

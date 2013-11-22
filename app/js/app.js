@@ -9,7 +9,16 @@ function($routeProvider) {
 	});
 	$routeProvider.when('/view2/:pageNumber', {
 		templateUrl : 'partials/partial2.html',
-		controller : 'MyCtrl2'
+		controller : 'MyCtrl2',
+		resolve: {
+			taskCount : function(kinvey)
+			{
+				return kinvey.countTask();
+			}
+		}
+	});
+	$routeProvider.when('/view2', {
+		redirectTo : '/view2/1'
 	});
 	$routeProvider.otherwise({
 		redirectTo : '/view1'
