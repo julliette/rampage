@@ -5,6 +5,71 @@
 	<hr/>
 
 	<hr/>
+	
+	
+	<!-- <div class="control-group">
+		<label class="control-label">Owner:</label>
+		<div class="controls">
+			<select ng-model="selectedValue" ng-options="user.FirstName+' '+user.LastName for user in Users">
+				<option value="">Select</option>
+			</select>
+		</div>
+	</div>
+	 -->
+	<table class="table">
+		<thead>
+			<tr>
+				<select ng-model="selectedValue" ng-options="user.FirstName+' '+user.LastName for user in Users">
+					<option value="">Choose Name</option>
+				</select>
+			</tr>
+			<tr>
+				<th>Content</th>
+				<th>Owner</th>
+				<th>Created Date</th>
+				<th>Due Date</th>
+				<th>Status</th>
+				<th>View/Edit</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr ng-show = "tasks.length==0">
+				<td>
+					No Tasks!
+				</td>
+			</tr>
+			<!-- <span ng-bind ="selectedValue.FirstName"></span> -->
+			<tr ng-repeat="task in tasks | filter:{User.FirstName:selectedValue.FirstName} | orderBy: 'CreatedDate'">
+				<td>{{task.Content}}</td>
+				<td>{{task.User.FirstName}} {{task.User.LastName}}</td>
+				<td>{{task.CreatedDate | date:'EEE MMMM, d yyyy'}}</td>
+				<td><span class="label-warning">{{task.DueDate | date:'MM/dd/yyyy'}}</span></td>
+				<td>{{task.Status}}</td>
+				<td><a ng-click="" href="#/details/{{task._id}}" class="label label-success">Edit/View</a></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<td colspan="6">
+				<div class="pagination ">
+					<ul>
+						<li ng-class="{disabled: currentPage ==0}">
+							<a href ng-click="prevPage()">&lt;&lt; Prev</a>
+						</li>
+						
+						<li ng-repeat="item in range(tasks.length)" ng-class="{active: item == currentPage}" ng-click="setPage()">
+							<a href ng-bind="item + 1">1</a>
+						</li>
+						<li>
+							<a href ng-click="nextPage()">Next &gt;&gt;</a>
+						</li>
+					</ul>
+				</div>
+			</td>
+		</tfoot>
+	</table>
+	
+	
 	<table class="table">
 		<thead>
 			<tr>

@@ -25,13 +25,15 @@ angular.module('rampage.controllers', ['rampage.services'])
 	}, function(data) {
 		$scope.data = data || "Request failed";
 	});
-	
+
 	kinvey.getUsers().then(function(data){
+		// console.log("get users data:");
+		// console.log(data.data[0].FirstName);
 		$scope.Users= data.data;
 	},function(error){
 		$scope.data = data || "Could not get List of Owners";
 	});	
-		
+	
 	kinvey.listTasks().then(function(data){
 		$scope.tasks = data.data;
 		$scope.status = data.status;
@@ -142,16 +144,16 @@ angular.module('rampage.controllers', ['rampage.services'])
 			}
 		};
 
-		function getUsers(){
+		// function getUsers(){
 			kinvey.getUsers().then(function(data){
 				$scope.Users= data.data;
 			},function(error){
 
 
 			});	
-		}
+		// }
 
-		getUsers();
+		// getUsers();
 
 
 		$scope.updateTask = function(task){	
