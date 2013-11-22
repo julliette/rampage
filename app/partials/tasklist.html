@@ -13,7 +13,7 @@
 		<th>Edit</th>
 	</thead>
 	<tbody>
-	<tr ng-repeat="task in tasks|orderBy:'CreatedDate'">
+	<tr ng-repeat="task in pagedItems[currentPage] |orderBy:'CreatedDate'">
 		<td>{{task.Content}}</td>
 		<td>{{task.Status}}</td>
 		<td>{{task.CreatedDate | date:'MMM dd yyyy' }}</td>
@@ -25,10 +25,28 @@
 		<td ng-hide='true'>{{task._id}}</td>
 	</tr>
 	</tbody>
+	 <tfoot>
+                    <td colspan="6">
+                        <div class="pagination pull-right">
+                            <ul>
+                                <li ng-class="{disabled: currentPage == 0}">
+                                    <a href ng-click="prevPage()">« Prev</a>
+                                </li>
+                                <li ng-repeat="n in range(pagedItems.length)"
+                                    ng-class="{active: n == currentPage}"
+                                ng-click="setPage()">
+                                    <a href ng-bind="n + 1">1</a>
+                                </li>
+                                <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                                    <a href ng-click="nextPage()">Next »</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tfoot>
 </table>
-<div data-pagination="" data-num-pages="numPages()" 
-      data-current-page="currentPage" data-max-size="maxSize"  
-      data-boundary-links="true"></div>
+
+
 
 
 <div class="hidden" id='popup'>
