@@ -60,8 +60,8 @@ function() {
 			alert("Task Saved");
     		$('#popup').removeClass('overlay');
     		$('#popup').addClass('hidden');
+			$scope.refreshList();
 		});
-		$scope.refreshList();
  	};
  	
  	$scope.addtask = function() {
@@ -81,6 +81,7 @@ function() {
  	$scope.refreshList=function(){
  		kinvey.task().then(function(data) {
 			$scope.tasks = data.data;
+			$scope.groupToPages();
 		});
  	};
  	
