@@ -13,6 +13,15 @@
 		  		<option value="Incomplete">Incomplete</option>
 				<option value="Complete">Complete</option>
 			</select>
+
+			<label>Owner:</label>
+			<select ng-model="newTask.Owner" required>				
+				<option ng-selected="newTask.Owner == (teamMember.FirstName + ' ' + teamMember.LastName)" 
+				ng-repeat="teamMember in teamMembers | orderBy:'FirstName'" 
+				value="{{teamMember.FirstName}} {{teamMember.LastName}}">
+					{{teamMember.FirstName}} {{teamMember.LastName}}</option>
+			</select>
+			<!--<span ng-show="myForm.input.$error.required">*</span>-->
 			
 			<button ng-click="saveTask(); hide()"  >Add Task</button>
 			
