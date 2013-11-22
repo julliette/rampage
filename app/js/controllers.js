@@ -197,10 +197,11 @@ angular.module('rampage.controllers', ['rampage.services'])
 			});	
 		// }
 
-		// getUsers();
-
 
 		$scope.updateTask = function(task){	
+			// getUsers();
+			console.log($scope.selectedValue);
+			
 			//if the date is less than today then
 			if(!isDateValid(task.DueDate)){
 				alert("Invalid due date. Select a date not in the past");
