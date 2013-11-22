@@ -1,23 +1,37 @@
-basePath = '../';
+module.exports = function (config) {
+	config.set({
+		basePath : '../',
 
-files = [
-  JASMINE,
-  JASMINE_ADAPTER,
-  'test/lib/jQuery.js',
-  'app/lib/angular/angular.js',
-  'app/lib/angular/angular-*.js',
-  'test/lib/angular/angular-mocks.js',
-  'test/lib/bootstrap.js',
-  'test/lib/angular-strap.js',
-  'app/js/**/*.js',
-  'test/unit/**/*.js'
-];
+		frameworks : ["jasmine"],
 
-autoWatch = true;
+		files : [
+		'test/lib/jQuery.js',
+		'app/lib/angular/angular.js',
+		'app/lib/angular/angular-*.js',
+		'test/lib/angular/angular-mocks.js',
+		'test/lib/bootstrap.js',
+		'test/lib/angular-strap.js',
+		'app/js/**/*.js',
+		'test/unit/**/*.js'
+		],
 
-browsers = ['Chrome'];
+		autoWatch : true,
 
-junitReporter = {
-  outputFile: 'test_out/unit.xml',
-  suite: 'unit'
-};
+		browsers : ['PhantomJS'],
+
+		preprocessors :  {
+			'src/partials/*.html': 'html2js'
+		},
+
+		reporters: ['progress', 'junit'],
+		
+		singleRun: false,
+
+		logLevel: config.LOG_ERROR,
+
+		junitReporter : {
+			outputFile: 'test_out/unit.xml',
+			suite: 'unit'
+		}
+	});
+}

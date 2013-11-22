@@ -24,9 +24,15 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 		},
 		
 		tasks : function() {
-			return $resource(SERVICE_URL + '/Task/:id', {id:'@_id'}, {
-				update : {method: 'PUT'}
+			return $resource(SERVICE_URL + '/Task/:action/:id', {id:'@_id', action:'@action', sort:'{"CreatedDate":-1}'}, {
+				update : {method: 'PUT'},
+				countAll : {method: 'GET', params: {action: '_count'}},
+				boundedQuery : {method: 'GET', params: {limit: '@limit', skip: '@skip'}, isArray: true}
 			});
+		},
+
+		members : function() {
+			return $resource(SERVICE_URL + '/TeamMember/:id', {id:'@_id'});
 		}
 	};
 	

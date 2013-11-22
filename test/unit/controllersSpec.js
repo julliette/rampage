@@ -87,8 +87,10 @@ describe('controllers', function() {
 				Content : "Add a task",
 				CreatedDate : 1055154000000
 			}];
+		var count = {"count" : 2};
 
-		it('should call out to kinvey for tasks', inject(function($controller, SERVICE_URL, kinvey) {
+		it('should call out to kinvey for tasks and task count', inject(function($controller, SERVICE_URL, kinvey) {
+			$httpBackend.expectGET(SERVICE_URL + '/Task/_count').respond(count);
 			$httpBackend.expectGET(SERVICE_URL + '/Task').respond(data);
 			control = $controller('TaskController', {
 				$scope : scope,
@@ -96,11 +98,14 @@ describe('controllers', function() {
 			});
 
 			expect(scope.tasks).toEqual([]);
+			expect(scope.totalTasks).toEqual(0);
 			$httpBackend.flush();
 			expect(scope.tasks).toEqualData(data);
+			expect(scope.totalTasks).toEqual(2);
 		}));
 		
 		it('should handle 0 items returned ok', inject(function($controller, SERVICE_URL, kinvey) {
+			$httpBackend.expectGET(SERVICE_URL + '/Task/_count').respond(count);
 			$httpBackend.expectGET(SERVICE_URL + '/Task').respond([]);
 			control = $controller('TaskController', {
 				$scope : scope,
@@ -113,6 +118,7 @@ describe('controllers', function() {
 		}));
 		
 		it('should handle retrieve error properly', inject(function($controller, SERVICE_URL, kinvey) {
+			$httpBackend.expectGET(SERVICE_URL + '/Task/_count').respond(500, {});
 			$httpBackend.expectGET(SERVICE_URL + '/Task').respond(500, {});
 			control = $controller('TaskController', {
 				$scope : scope,
@@ -121,9 +127,11 @@ describe('controllers', function() {
 
 			expect(scope.tasks).toEqual([]);
 			expect(scope.message).toEqual("");
+			expect(scope.totalTasks).toEqual(0);
 			$httpBackend.flush();
 			expect(scope.tasks).toEqual([]);
 			expect(scope.message).toEqual("There was an error retrieving your tasks.");
+			expect(scope.totalTasks).toEqual(0);
 		}));
 		
 		describe('task action tests', function() {
@@ -140,6 +148,7 @@ describe('controllers', function() {
 			}; 
 			
 			beforeEach(inject(function($controller, SERVICE_URL, kinvey) {
+				$httpBackend.expectGET(SERVICE_URL + '/Task/_count').respond(200, count);
 				$httpBackend.expectGET(SERVICE_URL + '/Task').respond(data);
 				control = $controller('TaskController', {
 					$scope : scope,

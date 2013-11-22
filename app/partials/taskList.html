@@ -2,19 +2,50 @@
 <h3 ng-show="message != ''" class="message">{{message}}</h3>
 <h3 ng-show="tasks.length == 0" class="message">You have not created any tasks. </h3>
 <button type="button" class="btn btn-success" ng-click="initEdit()"><i class="icon-user icon-white"></i>&nbsp;Create New Task</button>
+
+<div ng-controller="MyTasksController">
+	<table class="table table-striped" ng-hide="myTask.tasks.length == 0">
+		<thead>
+			<tr>
+				<th>Content</th>
+				<th>Created Date</th>
+				<th>Due Date</th>
+				<th>Status</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="task in myTask.tasks" ng-class="getClass(task.DueDate, task.Status)">
+				<td>{{task.Content}}</td>
+				<td>{{task.CreatedDate | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
+				<td>{{task.DueDate | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
+				<td>{{task.Status}}</td>
+				<td>
+				<button class="btn btn-primary" ng-click="initEdit(task)">
+					<i class="icon-pencil icon-white"></i>&nbsp;Edit
+				</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<div>Items {{myTask.taskIndex + 1}} - {{myTask.taskIndex + myTask.offset}} of {{myTask.totalTasks}}</div>
+	<div pager page-index="myTask.taskIndex" page-items="{{myTask.totalTasks}}" page-increment="{{myTask.offset}}" pages-visible="6"></div>
+</div>
+
 <table class="table table-striped" ng-hide="tasks.length == 0">
 	<thead>
 		<tr>
 			<th>Content</th>
 			<th>Created Date</th>
+			<th>Due Date</th>
 			<th>Status</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="task in tasks|orderBy:'CreatedDate'">
+		<tr ng-repeat="task in tasks" ng-class="getClass(task.DueDate, task.Status)">
 			<td>{{task.Content}}</td>
 			<td>{{task.CreatedDate | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
+			<td>{{task.DueDate | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
 			<td>{{task.Status}}</td>
 			<td>
 			<button class="btn btn-primary" ng-click="initEdit(task)">
@@ -23,3 +54,5 @@
 		</tr>
 	</tbody>
 </table>
+<div>Items {{taskIndex + 1}} - {{taskIndex + offset}} of {{totalTasks}}</div>
+<div pager page-index="taskIndex" page-items="{{totalTasks}}" page-increment="{{offset}}" pages-visible="6"></div>

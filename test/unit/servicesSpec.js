@@ -45,6 +45,42 @@ describe('service', function() {
 				kinvey.tasks().query();
 				$httpBackend.flush();
 			}));
+
+			it('sends an http post to create a task', inject(function(SERVICE_URL) {
+				var url = SERVICE_URL + '/Task';
+				$httpBackend.when('POST', url).respond(200, {});
+				$httpBackend.expect('POST', url);
+				kinvey.tasks().save();
+				$httpBackend.flush();
+			}));
+
+			it('sends an http put to edit tasks', inject(function(SERVICE_URL) {
+				var url = SERVICE_URL + '/Task';
+				$httpBackend.when('PUT', url).respond(200, {});
+				$httpBackend.expect('PUT', url);
+				kinvey.tasks().update();
+				$httpBackend.flush();
+			}));
+
+			it('sends an http get to count tasks', inject(function(SERVICE_URL) {
+				var url = SERVICE_URL + '/Task/_count';
+				$httpBackend.when('GET', url).respond(200, {});
+				$httpBackend.expect('GET', url);
+				kinvey.tasks().countAll();
+				$httpBackend.flush();
+			}));
+
 		});
+
+		describe('member tests', function() {
+			it('sends an http get to pull back team members', inject(function(SERVICE_URL) {
+				var url = SERVICE_URL + '/TeamMember';
+				$httpBackend.when('GET', url).respond(200, {});
+				$httpBackend.expect('GET', url);
+				kinvey.members().query();
+				$httpBackend.flush();
+			}));
+		});
+
 	});
 });
