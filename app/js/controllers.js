@@ -26,22 +26,19 @@ angular.module('rampage.controllers', ['rampage.services'])
 		$scope.data = data || "Request failed";
 	});
 	
+	kinvey.getUsers().then(function(data){
+		$scope.Users= data.data;
+	},function(error){
+		$scope.data = data || "Could not get List of Owners";
+	});	
+		
 	kinvey.listTasks().then(function(data){
 		$scope.tasks = data.data;
 		$scope.status = data.status;
 
-
-
 	}, function(data) {
 		$scope.tasks = data || "Request failed";
 	});
-
-
-
-
-
-
-
 
 
 })
@@ -186,8 +183,6 @@ angular.module('rampage.controllers', ['rampage.services'])
 		kinvey.viewTask(taskId).then(function(data){
 			$scope.task = data.data;
 			$scope.selectedValue = $scope.task.User;
-			console.log(data.data);
-			
 		});
 
 });
