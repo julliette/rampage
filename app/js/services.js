@@ -34,8 +34,17 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 					url: SERVICE_URL+'/Task'
 				}
 			);
-		}
+		},
 		
+		addNewTask: function()
+		{
+			return $http(
+				{
+					method: 'GET',
+					url: SERVICE_URL+'/Task'
+				}
+			);
+		}
 		
 	};
 	

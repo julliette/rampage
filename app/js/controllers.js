@@ -24,8 +24,11 @@ angular.module('rampage.controllers', ['rampage.services'])
 
 .controller('AddNewTaskCtrl', function ViewTasksCtrl($scope, kinvey) {
 
-	kinvey.viewTasks().then(function(data) {
+	kinvey.addNewTask().then(function(data) {
 		$scope.tasks = data.data;
+		
+		
+		$scope.CreatedDate = new Date().getTime();
 	}, function(data) {
 		$scope.data = data || "Request failed";
 	});

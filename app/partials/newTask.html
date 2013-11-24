@@ -1,5 +1,16 @@
 Add New Task
 
-<button type="button">Submit</button>
-<button type="button">Cancel</button>
-
+<form>
+  Content:			<input type="text" value="{{tasks[1].Content}}"><br>
+  Status:			<input type="text" value="{{tasks[1].Status}}"><br>
+  Due Date:			<input type="date" value="{{tasks[1].DueDate }}" min='0'><br>
+  Due Date:			<input type="date" value="today"><br>
+  
+  <br>Created Date:		<input type="date" readonly="readonly" value="{{CreatedDate}}"><br>
+  <br>Created Date:		<input type="date" value="{{CreatedDate}}"><br>
+  <input type="submit" value="Submit">
+  <button type="button">Cancel</button>
+  <br>
+</form>
+<br/>
+<br/>
