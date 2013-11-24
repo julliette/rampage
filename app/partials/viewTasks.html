@@ -1,20 +1,38 @@
 <p>Viewing all Tasks</p>
 <table>
 	<thead>
-		<tr>
+		<tr bgcolor="lightgray">
 			<th>
-				
+				Task Content
+			</th>
+			<th>
+				Task Status
+			</th>
+			<th>
+				Created Date
 			</th>
 		</tr>
 	</thead>
 	
-	<tbody task in Tasks>
-		<tr >
+	<tbody bgcolor="lightblue">
+		<tr ng-show = "tasks.length==0">
 			<td>
-				{{Content}}
+				No Tasks!
+			</td>
+		</tr>
+		<!-- <tr ng-repeat="task in tasks | filter:{User.FirstName:selectedValue.FirstName} | orderBy: 'CreatedDate'"> -->
+		<tr ng-repeat="task in tasks | orderBy:'CreatedDate | date:\'yyyy-MM-dd HH:mm:ss Z\''">
+			<td>
+				{{task.Content}}
 			</td>
 			<td>
-				{{Status}}
+				{{task.Status}}
+			</td>
+			<td>
+				{{task.CreatedDate | date:'medium'}}
+			</td>
+			<td>
+				{{task.CreatedDate | date:'yyyy-MM-dd HH:mm:ss Z'}}
 			</td>
 		</tr>
 	</tbody>
