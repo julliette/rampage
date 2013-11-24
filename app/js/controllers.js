@@ -31,12 +31,8 @@ angular.module('rampage.controllers', ['rampage.services'])
 	console.log($scope);
 	$scope.submit = function()
 	{
-		console.log("In Submit function");
-		console.log($scope.newTaskDetails);
-		
 		kinvey.addNewTask($scope.newTaskDetails).then(function(data) {
-			console.log("DATA:");
-			console.log(data);
+			;
 		}, function(data)
 		{
 			$scope.data = data || "Request failed";
