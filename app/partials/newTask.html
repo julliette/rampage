@@ -1,16 +1,49 @@
 Add New Task
 
-<form>
-  Content:			<input type="text" value="{{tasks[1].Content}}"><br>
-  Status:			<input type="text" value="{{tasks[1].Status}}"><br>
-  Due Date:			<input type="date" value="{{tasks[1].DueDate }}" min='0'><br>
-  Due Date:			<input type="date" value="today"><br>
-  
-  <br>Created Date:		<input type="date" readonly="readonly" value="{{CreatedDate}}"><br>
-  <br>Created Date:		<input type="date" value="{{CreatedDate}}"><br>
-  <input type="submit" value="Submit">
-  <button type="button">Cancel</button>
-  <br>
+<form ng-submit="submit()">
+	<table>
+		<tr>
+			<td>
+				Content:
+			</td>
+			<td>
+				<input type="text" ng-model="newTaskDetails.Content" required="required" value = "Type in Content" ng-bind="newTaskDetails.Content">
+			</td>
+			<td>
+				{{newTaskDetails.Content}}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Status:
+			</td>
+			<td>
+				<input type="text" ng-model="newTaskDetails.Status" value="Type in Status Here" ng-bind="newTaskDetails.Status">
+			</td>
+			<td>
+				{{newTaskDetails.Status}}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Due Date:
+			</td>
+			<td>
+				<input type="date" ng-model="newTaskDetails.DueDate" min='0' ng-bind"newTaskDetails.DueDate">
+			</td>
+			<td>
+				{{newTaskDetails.DueDate}}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="submit" value="Submit">
+			</td>
+			<td>
+				<button type="button">Cancel</button>
+			</td>
+		</tr>
+	</table>
 </form>
 <br/>
 <br/>

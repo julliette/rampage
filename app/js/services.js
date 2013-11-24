@@ -37,7 +37,7 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 			);
 		},
 		
-		addNewTask: function()
+		addNewTask: function(newTaskDetails)
 		{
 			return $http(
 				{
@@ -45,11 +45,11 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 					url: SERVICE_URL+'/Task',
 					data:
 					{
-						"Content": {{Content}},
-						"Status": {{Status}},
+						"Content": newTaskDetails.Content,
+						"Status": newTaskDetails.Status,
 						"CreatedDate": new Date().getTime(),
-						"DueDate" : {{DueDate}},
-						"Owner" : {{Owner}}
+						"DueDate" : newTaskDetails.DueDate,
+						"Owner" : newTaskDetails.Owner
 					}
 				}
 			);

@@ -23,15 +23,25 @@ angular.module('rampage.controllers', ['rampage.services'])
 })
 
 .controller('AddNewTaskCtrl', function ViewTasksCtrl($scope, kinvey) {
-
-	kinvey.addNewTask().then(function(data) {
-		$scope.tasks = data.data;
+	$scope.newTaskDetails = {};
+	$scope.newTaskDetails.Content = null;
+	$scope.newTaskDetails.Status = null;
+	$scope.newTaskDetails.DueDate = null;
+	$scope.newTaskDetails.Owner = null;
+	console.log($scope);
+	$scope.submit = function()
+	{
+		console.log("In Submit function");
+		console.log($scope.newTaskDetails);
 		
-		
-		$scope.CreatedDate = new Date().getTime();
-	}, function(data) {
-		$scope.data = data || "Request failed";
-	});
-})
+		kinvey.addNewTask($scope.newTaskDetails).then(function(data) {
+			console.log("DATA:");
+			console.log(data);
+		}, function(data)
+		{
+			$scope.data = data || "Request failed";
+		});
+	};
+});
 
 ; 
