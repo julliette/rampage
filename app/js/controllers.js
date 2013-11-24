@@ -13,17 +13,13 @@ angular.module('rampage.controllers', ['rampage.services'])
 	});
 })
 	
-.controller('ViewTasksCtrl', function viewTaskCtrl($scope, kinvey) {
+.controller('ViewTasksCtrl', function ViewTasksCtrl($scope, kinvey) {
 
 	kinvey.viewTasks().then(function(data) {
-		$scope.data = data.data;
-		console.log(data);
+		$scope.tasks = data.data;
 	}, function(data) {
 		$scope.data = data || "Request failed";
 	});
 })
 
-.controller('MyCtrl2', [
-function() {
-
-}]); 
+; 

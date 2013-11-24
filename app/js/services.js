@@ -16,18 +16,24 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 	$http.defaults.headers.common['X-Kinvey-API-Version'] = '3';
 	
 	var service = {
-		ping : function() {
-			return $http({
-				url: SERVICE_URL,
-				method: 'GET'
-			});
-		}
+		ping: function()
+		{
+			return $http(
+				{
+					url: SERVICE_URL,
+					method: 'GET'
+				}
+			);
+		},
 		
-		viewTasks : function() {
-			return $http({
-				url: SERVICE_URL + '/Tasks',
-				method: 'GET'
-			});
+		viewTasks: function()
+		{
+			return $http(
+				{
+					method: 'GET',
+					url: SERVICE_URL+'/Task'
+				}
+			);
 		}
 		
 		
