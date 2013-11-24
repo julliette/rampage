@@ -22,6 +22,15 @@ angular.module('rampage.services').factory('kinvey', ['$resource', '$http', 'SER
 				method: 'GET'
 			});
 		}
+		
+		viewTasks : function() {
+			return $http({
+				url: SERVICE_URL + '/Tasks',
+				method: 'GET'
+			});
+		}
+		
+		
 	};
 	
 	return service;
