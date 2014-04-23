@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" ng-app="rampage">
+	<head>
+		<meta charset="utf-8">
+		<title>My AngularJS App</title>
+	    <!-- build:css styles/vendor.css -->
+	    <!-- bower:css -->
+	    <!-- endbower -->
+	    <!-- endbuild -->
+	    <!-- build:css({.tmp,app}) styles/main.css -->
+	    <link rel="stylesheet" href="styles/main.css">
+		<link rel="stylesheet" href="css/app.css"/>
+	    <!-- endbuild -->
+		<style>
+			body {
+				padding-top:60px; /* 60px to make the container go all the way to the bottom of the topbar */
+			}
+		</style>
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="brand" href="#">Rampage</a>
+					<div class="nav-collapse collapse">
+						<ul class="nav">
+							<li>
+								<a href="#/view1" class="active">view1</a>
+							</li>
+							<li>
+								<a href="#/view2">view2</a>
+							</li>
+							<li>
+								<a href="#/tasks">Task List</a>
+							</li>
+						</ul>
+					</div><!--/.nav-collapse -->
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+
+			<div ng-view></div>
+
+			<div>
+				Angular seed app: v<span app-version></span>
+			</div>
+		</div>
+	    <!-- build:js scripts/vendor.js -->
+	    <!-- bower:js -->
+	    <!-- endbower -->
+	    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <!-- @if NODE_ENV='production' -->
+        <script src="scripts/app-consts-prod.js"></script>
+        <!-- @endif -->
+        <!-- @if NODE_ENV='development' -->
+        <script src="scripts/app-consts-dev.js"></script>
+        <!-- @endif -->
+		<script src="js/app.js"></script>
+		<script src="js/services.js"></script>
+		<script src="js/controllers.js"></script>
+		<script src="js/filters.js"></script>
+		<script src="js/directives.js"></script>
+        <!-- endbuild -->
+
+        <!-- @if e2e='mock' -->
+        <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+        <script src="scripts/mocks/e2e-mocks.js"></script>
+        <!-- @endif -->
+	</body>
+</html>

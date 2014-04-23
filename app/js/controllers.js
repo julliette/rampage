@@ -9,11 +9,13 @@ angular.module('rampage.controllers', ['rampage.services'])
 		$scope.data = data.data;
 		$scope.status = data.status;
 	}, function(data) {
-		$scope.data = data || "Request failed";
+		$scope.data = "Request failed";
 	});
 	
 }).controller('MyCtrl2', function MyCtrl2() {
 }).controller('TaskController', function TaskController($scope, kinvey, $modal, $q) {
+	var modalWin = $modal({template: 'partials/task-modal.html', show: false, backdrop: 'static', scope: $scope});
+
 	$scope.message = "";
 	$scope.editing = {};
 
@@ -28,12 +30,12 @@ angular.module('rampage.controllers', ['rampage.services'])
 			$scope.editing = angular.copy(task);
 			$scope.original = task;
 		}
-		var modalPromise = $modal({template: 'partials/task-modal.html', persist: true, show: false, backdrop: 'static', scope: $scope});
-		$q.when(modalPromise).then(function(modalEl) {modalEl.modal('show')});
+		modalWin.$promise.then(function() { modalWin.show(); });
 	};
 	
 	$scope.saveTask = function(task, editing) {
 		if (editing._id != undefined) {
+			modalWin.$promise.then(function() { modalWin.hide(); });
 			// save the existing task
 			editing.$update(function(updatedTask) {
 				// replace the old version with this one
@@ -44,6 +46,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 				$scope.message = "Failed to save updated task. Please try again: " + error.status;
 			});
 		} else {
+			modalWin.$promise.then(function() { modalWin.hide(); });
 			// create the new task
 			$scope.editing.CreatedDate = new Date().getTime();
 			kinvey.tasks().save($scope.editing, function(task) {
@@ -58,6 +61,7 @@ angular.module('rampage.controllers', ['rampage.services'])
 	};
 	
 	$scope.cancelEdit = function() {
+		modalWin.$promise.then(function() { modalWin.hide(); });
 		cleanUp();
 	};
 	

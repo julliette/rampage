@@ -1,2 +1,11 @@
-logs/*
-!.gitkeep
+node_modules
+dist
+.tmp
+.sass-cache
+app/bower_components
+app/index.html
+test/e2e/protractor.conf.base.js
+platforms/android/assets
+platforms/ios/www
+.DS_Store
+coverage
